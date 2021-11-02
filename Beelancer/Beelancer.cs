@@ -9,7 +9,7 @@ public class Beelancer : RigidBody2D
 	public static Beelancer Current { get; set; }
 	private Vector2 move;
 
-	private Label debugLabel;
+	private Label debugLabel; //temp
 
 	public override void _Ready()
 	{
@@ -50,7 +50,6 @@ public class Beelancer : RigidBody2D
 		{
 			//Apply actual force
 			ApplyCentralImpulse(move * AccelerationForce);
-
 			//Apply velocity
 			float vX = LinearVelocity.x;
 			float vY = LinearVelocity.y;
