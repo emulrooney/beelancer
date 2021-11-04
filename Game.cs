@@ -1,5 +1,6 @@
 using Godot;
-using System;
+using System.Collections;
+using System.Collections.Generic;
 
 public class Game : Node
 {
@@ -11,6 +12,5 @@ public class Game : Node
 			//TODO zoom in and out based on velocity
 			GameCamera.Current.Position = Beelancer.Current.Position;
 		}
-
 	}
 }

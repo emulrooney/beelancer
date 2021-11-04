@@ -2,4 +2,10 @@
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Data\ResourceCollection.cs" />
+  </ItemGroup>
 </Project>

@@ -117,34 +117,27 @@ scale = Vector2( 0.8, 0.8 )
 [node name="Deposit" parent="." instance=ExtResource( 5 )]
 position = Vector2( -1022.36, 537.963 )
 scale = Vector2( 0.5, 0.5 )
-PollenType = 1
 
 [node name="Deposit2" parent="." instance=ExtResource( 5 )]
 position = Vector2( -1010.38, 474.285 )
 scale = Vector2( 0.5, 0.5 )
-PollenType = 1
 
 [node name="Deposit3" parent="." instance=ExtResource( 5 )]
 position = Vector2( -942.203, 519.984 )
 scale = Vector2( 0.5, 0.5 )
-PollenType = 1
 
 [node name="Deposit4" parent="." instance=ExtResource( 5 )]
 position = Vector2( -956.437, 555.194 )
 scale = Vector2( 0.5, 0.5 )
-PollenType = 1
 
 [node name="Deposit5" parent="." instance=ExtResource( 5 )]
 position = Vector2( -951.193, 469.041 )
 scale = Vector2( 0.5, 0.5 )
-PollenType = 1
 
 [node name="Deposit6" parent="." instance=ExtResource( 5 )]
 position = Vector2( -1020.86, 592.651 )
 scale = Vector2( 0.5, 0.5 )
-PollenType = 1
 
 [node name="Deposit7" parent="." instance=ExtResource( 5 )]
 position = Vector2( -1061.32, 516.987 )
 scale = Vector2( 0.5, 0.5 )
-PollenType = 1

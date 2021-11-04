@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class PollenDeposit : Area2D
 {
-	[Export] public PollenTypeEnum PollenType { get; private set; }
+	[Export] public ResourceTypeEnum ResourceType { get; private set; }
 	
 	[Export] public float Value { get; private set; } = 2f;
 	[Export] public float CollectionRate { get; private set; } = 0.2f; //Lower numbers are harder to gather.

@@ -10,18 +10,18 @@ public class Beelancer : RigidBody2D
 	[Export] public float RotationSpeed = 100f;
 	[Export] public float BrakePower = 20f;
 	
-	public static Beelancer Current { get; set; }
+	public static Beelancer Current { get; private set; }
 	private Vector2 move;
 
+	//Visuals
 	private Label debugLabel; //temp
 	private AnimationPlayer _animator;
-
-	private float baseLinearDamping;
-
 	private Node2D _beeSprite;
 	private PlayerState _state = PlayerState.Takeoff;
 
-	private List<PollenDeposit> activeDeposits = new List<PollenDeposit>();
+	private List<PollenDeposit> _activeDeposits = new List<PollenDeposit>();
+	private Dictionary<ResourceTypeEnum, float> _collected;
+	
 	private Timer _collectionTimer;
 
 	private Dictionary<PlayerState, string> _animationNames = new Dictionary<PlayerState, string>()
@@ -48,7 +48,16 @@ public class Beelancer : RigidBody2D
 		_collectionTimer.Start();
 		
 		_animator.CurrentAnimation = _animationNames[_state];
-		baseLinearDamping = LinearDamp;
+
+		_collected = new Dictionary<ResourceTypeEnum, float>
+		{
+			{ResourceTypeEnum.RedPollen, 0f},
+			{ResourceTypeEnum.BluePollen, 0f},
+			{ResourceTypeEnum.GreenPollen, 0f},
+			// {ResourceTypeEnum.Honey, 0f},
+			{ResourceTypeEnum.Nectar, 0f},
+			// {ResourceTypeEnum.Energy, 0f},
+		};
 	}
 
 	/**
@@ -110,18 +119,26 @@ public class Beelancer : RigidBody2D
 	//Signalled
 	private void OnPollenCollectorTimerTimeout()
 	{
-		GD.Print("tick");
+		bool signalCollectionUpdate = false;
+		
 		//Probably inefficient but fine for now
-		foreach (var activeDeposit in activeDeposits)
+		foreach (var activeDeposit in _activeDeposits)
 		{
 			if (IsInstanceValid(activeDeposit))
 			{
 				activeDeposit.Harvest();
+				_collected[activeDeposit.ResourceType] += activeDeposit.CollectionRate;
+				signalCollectionUpdate = true;
 			}
 			else
 			{
-				activeDeposits.Remove(activeDeposit);
+				_activeDeposits.Remove(activeDeposit);
 			}
+		}
+
+		if (signalCollectionUpdate)
+		{
+			ResourceCounters.UpdatePlayerCollection(_collected);
 		}
 	}
 
@@ -133,10 +150,9 @@ public class Beelancer : RigidBody2D
 		GD.Print("Enter");
 		
 		//if cast fails, do nothing.
-		var pollen = area as PollenDeposit;
-		if (pollen != null)
+		if (area is PollenDeposit pollen)
 		{
-			activeDeposits.Add(pollen);
+			_activeDeposits.Add(pollen);
 		}
 	}
 
@@ -148,10 +164,9 @@ public class Beelancer : RigidBody2D
 		//TODO On takeoff, remove _all_ areas
 		
 		//if cast fails, do nothing.
-		var pollen = area as PollenDeposit;
-		if (pollen != null)
+		if (area is PollenDeposit pollen)
 		{
-			activeDeposits.Remove(pollen);
+			_activeDeposits.Remove(pollen);
 		}
 	}
 }
