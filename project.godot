@@ -28,9 +28,25 @@ collect_pollen={
  ]
 }
 
+[layer_names]
+
+2d_render/layer_1="base"
+2d_physics/layer_1="World"
+2d_physics/layer_3="Flowers"
+2d_render/layer_4="world"
+2d_physics/layer_5="Pollen"
+2d_render/layer_7="pollen & powerups"
+2d_physics/layer_7="Enemies"
+2d_render/layer_10="flower enemies"
+2d_physics/layer_10="Player"
+2d_render/layer_13="player"
+2d_render/layer_16="above player"
+
 [physics]
 
 common/enable_pause_aware_picking=true
+2d/sleep_threshold_angular=0.1
+2d/default_gravity_vector=Vector2( 0, 0 )
 
 [rendering]
 

@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://World/grassTexture.jpg" type="Texture" id=1]
 [ext_resource path="res://Beelancer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://World/GameCamera.cs" type="Script" id=3]
+[ext_resource path="res://World/Flower/Flower.tscn" type="PackedScene" id=4]
+[ext_resource path="res://World/PollenDeposit/PollenDeposit.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -12,23 +14,22 @@ uniform vec2 offset = vec2(0.0, 0.0);
 
 void fragment()
 {
-	COLOR = texture(TEXTURE, UV + (offset * scrollSpeed));
+	COLOR = texture(TEXTURE, UV + (offset * (scrollSpeed / 20f)));
 }"
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
-shader_param/scrollSpeed = 0.001
+shader_param/scrollSpeed = 0.015
 shader_param/offset = Vector2( 0, 0 )
 
 [node name="World" type="Node2D"]
 
 [node name="Beelancer" parent="." instance=ExtResource( 2 )]
 mode = 2
-mass = 0.204082
-linear_damp = 1.0
-angular_damp = 1.0
-AccelerationForce = 36.0
-MaxVelocity = 200.0
+mass = 0.01
+linear_damp = 10.0
+angular_damp = 30.0
+RotationSpeed = 15.0
 
 [node name="DebugLabel" type="Label" parent="Beelancer"]
 margin_left = -141.0
@@ -62,3 +63,88 @@ stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Flower" parent="." instance=ExtResource( 4 )]
+modulate = Color( 0.4, 0.603922, 1, 1 )
+position = Vector2( -988.187, 509.681 )
+rotation = 0.767945
+
+[node name="Flower10" parent="." instance=ExtResource( 4 )]
+position = Vector2( -892.078, -1001.36 )
+rotation = 0.767945
+
+[node name="Flower2" parent="." instance=ExtResource( 4 )]
+modulate = Color( 0.4, 0.603922, 1, 1 )
+position = Vector2( -1431.35, 167.961 )
+scale = Vector2( 0.8, 0.8 )
+
+[node name="Flower4" parent="." instance=ExtResource( 4 )]
+modulate = Color( 0.368627, 1, 0.956863, 1 )
+position = Vector2( 1136.88, -680.998 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Flower5" parent="." instance=ExtResource( 4 )]
+modulate = Color( 0.368627, 1, 0.956863, 1 )
+position = Vector2( 1441.23, -430.048 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Flower6" parent="." instance=ExtResource( 4 )]
+modulate = Color( 0.368627, 1, 0.956863, 1 )
+position = Vector2( 1825.66, -691.677 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Flower7" parent="." instance=ExtResource( 4 )]
+modulate = Color( 1, 0.541176, 0.384314, 1 )
+position = Vector2( 1056.79, 1097.01 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Flower8" parent="." instance=ExtResource( 4 )]
+modulate = Color( 1, 0.541176, 0.384314, 1 )
+position = Vector2( 1649.46, 669.862 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Flower9" parent="." instance=ExtResource( 4 )]
+modulate = Color( 1, 0.541176, 0.384314, 1 )
+position = Vector2( 912.629, 669.862 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Flower3" parent="." instance=ExtResource( 4 )]
+modulate = Color( 0.4, 0.603922, 1, 1 )
+position = Vector2( -1538.14, 1022.26 )
+rotation = 1.5708
+scale = Vector2( 0.8, 0.8 )
+
+[node name="Deposit" parent="." instance=ExtResource( 5 )]
+position = Vector2( -1022.36, 537.963 )
+scale = Vector2( 0.5, 0.5 )
+PollenType = 1
+
+[node name="Deposit2" parent="." instance=ExtResource( 5 )]
+position = Vector2( -1010.38, 474.285 )
+scale = Vector2( 0.5, 0.5 )
+PollenType = 1
+
+[node name="Deposit3" parent="." instance=ExtResource( 5 )]
+position = Vector2( -942.203, 519.984 )
+scale = Vector2( 0.5, 0.5 )
+PollenType = 1
+
+[node name="Deposit4" parent="." instance=ExtResource( 5 )]
+position = Vector2( -956.437, 555.194 )
+scale = Vector2( 0.5, 0.5 )
+PollenType = 1
+
+[node name="Deposit5" parent="." instance=ExtResource( 5 )]
+position = Vector2( -951.193, 469.041 )
+scale = Vector2( 0.5, 0.5 )
+PollenType = 1
+
+[node name="Deposit6" parent="." instance=ExtResource( 5 )]
+position = Vector2( -1020.86, 592.651 )
+scale = Vector2( 0.5, 0.5 )
+PollenType = 1
+
+[node name="Deposit7" parent="." instance=ExtResource( 5 )]
+position = Vector2( -1061.32, 516.987 )
+scale = Vector2( 0.5, 0.5 )
+PollenType = 1
