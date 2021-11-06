@@ -15,9 +15,7 @@ outlines = [ PoolVector2Array( -11.8138, -351.678, 123.034, -341.19, 136.519, -3
 collision_layer = 4
 collision_mask = 0
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
+NotLandableTint = Color( 0.588235, 0.588235, 0.588235, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

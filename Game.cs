@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 /**
@@ -5,6 +6,8 @@ using Godot;
  */
 public class Game : Node
 {
+	public static Random Random = new Random();
+
 	public static Node2D CurrentWorld { get; private set; }
 
 	public override void _Ready()

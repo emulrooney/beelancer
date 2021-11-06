@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://World/grassTexture.jpg" type="Texture" id=1]
 [ext_resource path="res://Beelancer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://World/GameCamera.cs" type="Script" id=3]
-[ext_resource path="res://World/Flower/Flower.tscn" type="PackedScene" id=4]
-[ext_resource path="res://World/PollenDeposit/PollenDeposit.tscn" type="PackedScene" id=5]
+[ext_resource path="res://World/FlowerCollection/FlowerCollection1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://World/FlowerCollection/FlowerCollection3.tscn" type="PackedScene" id=5]
+[ext_resource path="res://World/FlowerCollection/FlowerCollection2.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -19,7 +20,7 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
-shader_param/scrollSpeed = 0.015
+shader_param/scrollSpeed = 0.0
 shader_param/offset = Vector2( 0, 0 )
 
 [node name="World" type="Node2D"]
@@ -46,6 +47,10 @@ __meta__ = {
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+zoom = Vector2( 1.5, 1.5 )
+smoothing_enabled = true
+smoothing_speed = 15.0
+editor_draw_limits = true
 script = ExtResource( 3 )
 roundProcessTo = Vector2( 0.5, 0.5 )
 
@@ -57,90 +62,24 @@ transform = Transform2D( 0.8, 0, 0, 0.8, 0, 0 )
 [node name="TextureRect" type="TextureRect" parent="Camera2D/Background"]
 self_modulate = Color( 0.384314, 0.580392, 0.294118, 1 )
 material = SubResource( 2 )
-margin_left = -3369.0
-margin_top = -2095.0
-margin_right = 3429.0
-margin_bottom = 2007.0
+margin_left = -4591.0
+margin_top = -2467.0
+margin_right = 4117.0
+margin_bottom = 1858.0
 texture = ExtResource( 1 )
 stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Flower" parent="." instance=ExtResource( 4 )]
-modulate = Color( 0.4, 0.603922, 1, 1 )
-position = Vector2( -988.187, 509.681 )
-rotation = 0.767945
+[node name="Flowers" parent="." instance=ExtResource( 4 )]
+position = Vector2( -1354.34, 579.792 )
 
-[node name="Flower10" parent="." instance=ExtResource( 4 )]
-position = Vector2( -892.078, -1001.36 )
-rotation = 0.767945
+[node name="Flowers2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1945.66, -676.208 )
 
-[node name="Flower2" parent="." instance=ExtResource( 4 )]
-modulate = Color( 0.4, 0.603922, 1, 1 )
-position = Vector2( -1431.35, 167.961 )
-scale = Vector2( 0.8, 0.8 )
+[node name="Flowers3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 765.66, 519.792 )
 
-[node name="Flower4" parent="." instance=ExtResource( 4 )]
-modulate = Color( 0.368627, 1, 0.956863, 1 )
-position = Vector2( 1136.88, -680.998 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Flower5" parent="." instance=ExtResource( 4 )]
-modulate = Color( 0.368627, 1, 0.956863, 1 )
-position = Vector2( 1441.23, -430.048 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Flower6" parent="." instance=ExtResource( 4 )]
-modulate = Color( 0.368627, 1, 0.956863, 1 )
-position = Vector2( 1825.66, -691.677 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Flower7" parent="." instance=ExtResource( 4 )]
-modulate = Color( 1, 0.541176, 0.384314, 1 )
-position = Vector2( 1056.79, 1097.01 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Flower8" parent="." instance=ExtResource( 4 )]
-modulate = Color( 1, 0.541176, 0.384314, 1 )
-position = Vector2( 1649.46, 669.862 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Flower9" parent="." instance=ExtResource( 4 )]
-modulate = Color( 1, 0.541176, 0.384314, 1 )
-position = Vector2( 912.629, 669.862 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Flower3" parent="." instance=ExtResource( 4 )]
-modulate = Color( 0.4, 0.603922, 1, 1 )
-position = Vector2( -1538.14, 1022.26 )
-rotation = 1.5708
-scale = Vector2( 0.8, 0.8 )
-
-[node name="Deposit" parent="." instance=ExtResource( 5 )]
-position = Vector2( -1022.36, 537.963 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Deposit2" parent="." instance=ExtResource( 5 )]
-position = Vector2( -1010.38, 474.285 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Deposit3" parent="." instance=ExtResource( 5 )]
-position = Vector2( -942.203, 519.984 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Deposit4" parent="." instance=ExtResource( 5 )]
-position = Vector2( -956.437, 555.194 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Deposit5" parent="." instance=ExtResource( 5 )]
-position = Vector2( -951.193, 469.041 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Deposit6" parent="." instance=ExtResource( 5 )]
-position = Vector2( -1020.86, 592.651 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Deposit7" parent="." instance=ExtResource( 5 )]
-position = Vector2( -1061.32, 516.987 )
-scale = Vector2( 0.5, 0.5 )
+[node name="Flowers4" parent="." instance=ExtResource( 5 )]
+position = Vector2( -426.34, -940.208 )
