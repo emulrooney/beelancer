@@ -1,9 +1,17 @@
 using Godot;
-using System.Collections;
-using System.Collections.Generic;
 
+/**
+ * Autoloaded, singleton
+ */
 public class Game : Node
 {
+	public static Node2D CurrentWorld { get; private set; }
+
+	public override void _Ready()
+	{
+		CurrentWorld = GetParent().GetNode<Node2D>("World");
+	}
+	
 	public override void _Process(float delta)
 	{
 		if (IsInstanceValid(Beelancer.Current) && IsInstanceValid(GameCamera.Current))

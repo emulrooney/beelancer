@@ -25,10 +25,13 @@ shader_param/offset = Vector2( 0, 0 )
 [node name="World" type="Node2D"]
 
 [node name="Beelancer" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, 600 )
+z_index = 10
 mode = 2
 mass = 0.01
 linear_damp = 10.0
 angular_damp = 30.0
+WalkSpeed = 200.0
 RotationSpeed = 15.0
 
 [node name="DebugLabel" type="Label" parent="Beelancer"]
