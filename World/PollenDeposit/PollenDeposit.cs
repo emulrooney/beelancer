@@ -24,6 +24,13 @@ public class PollenDeposit : Area2D
 		_initialScale = _sprite.Scale;
 	}
 
+	public void Setup(ResourceTypeEnum resourceType, float value, float collectionRate)
+	{
+		ResourceType = resourceType;
+		Value = value;
+		CollectionRate = collectionRate;
+	}
+
 	public void Harvest()
 	{
 		_currentValue -= CollectionRate;

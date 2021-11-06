@@ -26,7 +26,10 @@ public class FlowerCollection : Node2D
 			if (nodeChild is Flower flower)
 			{
 				flower.SetSpriteTexture(selected);
-				flower.SetResource(_resource);
+				if (flower.Landable)
+				{
+					flower.SetResource(_resource);
+				}
 			}
 		}
 	}

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://World/Flower/Flower1Outlined.png" type="Texture" id=1]
 [ext_resource path="res://World/Flower/Flower.cs" type="Script" id=2]
+[ext_resource path="res://World/PollenDeposit/PollenDeposit.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 364.397
@@ -11,11 +12,16 @@ vertices = PoolVector2Array( 253.387, -186.865, 335.794, -191.359, 284.851, -104
 polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 3 ), PoolIntArray( 7, 8, 9, 10 ), PoolIntArray( 11, 12, 13, 3 ), PoolIntArray( 10, 14, 7 ), PoolIntArray( 3, 15, 16, 17 ), PoolIntArray( 18, 19, 20, 21 ), PoolIntArray( 20, 22, 23, 24 ), PoolIntArray( 2, 25, 26, 4, 3 ), PoolIntArray( 27, 28, 10, 24 ), PoolIntArray( 29, 30, 31, 32, 0, 3, 17, 33, 34 ), PoolIntArray( 9, 35, 36, 11 ), PoolIntArray( 37, 38, 39, 21, 3 ), PoolIntArray( 40, 41, 42, 37, 3 ), PoolIntArray( 20, 9, 11, 3, 21 ), PoolIntArray( 17, 43, 44, 33 ), PoolIntArray( 30, 45, 31 ), PoolIntArray( 24, 10, 9, 20 ), PoolIntArray( 6, 40, 3 ) ]
 outlines = [ PoolVector2Array( -11.8138, -351.678, 123.034, -341.19, 136.519, -309.726, 268.37, -245.299, 253.387, -186.865, 335.794, -191.359, 284.851, -104.458, 368.756, -81.9831, 356.77, 45.373, 332.797, 60.3561, 370.255, 117.292, 313.319, 150.255, 292.343, 171.231, 320.81, 210.187, 295.339, 246.146, 227.915, 228.167, 244.397, 298.587, 230.912, 310.573, 130.525, 249.143, 135.02, 349.529, 82.5795, 363.014, 39.1287, 249.143, 25.6439, 377.997, -25.2986, 380.994, -55.2647, 297.089, -89.7258, 357.021, -142.167, 348.031, -142.167, 277.611, -221.577, 316.567, -254.54, 255.136, -303.984, 219.177, -239.557, 139.766, -330.953, 153.251, -351.93, 97.8138, -314.472, 70.8443, -363.916, 61.8544, -339.943, -87.9763, -253.041, -89.4746, -324.96, -141.915, -290.499, -201.848, -248.546, -183.868, -271.021, -233.312, -221.577, -290.248, -190.112, -299.238, -125.685, -327.705, -98.7156, -336.695 ) ]
 
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 91.2307, 82.9966 )
+
 [node name="Landing" type="Area2D"]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource( 2 )
+Pollen = ExtResource( 3 )
 NotLandableTint = Color( 0.588235, 0.588235, 0.588235, 1 )
+PollenSpawnPoint = Vector2( 100, 100 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -29,3 +35,9 @@ texture = ExtResource( 1 )
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
 visible = false
 navpoly = SubResource( 2 )
+
+[node name="PollenSpawnArea" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PollenSpawnArea"]
+shape = SubResource( 3 )

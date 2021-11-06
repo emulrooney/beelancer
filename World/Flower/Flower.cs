@@ -4,8 +4,10 @@ using Godot;
 
 public class Flower : Area2D
 {
-	[Export] public bool Landable = true;
-	[Export] public Color NotLandableTint;
+	[Export] public PackedScene Pollen { get; private set; }
+	[Export] public bool Landable { get; private set; } = true;
+	[Export] public Color NotLandableTint { get; private set; }
+	[Export] public Vector2 PollenSpawnPoint { get; private set; }
 
 	private Navigation2D _navigation2D;
 
@@ -27,9 +29,8 @@ public class Flower : Area2D
 
 		//Randomize rotation for some visual variety
 		Rotation = Game.Random.Next(0, 360);
-		
 
-		//_navigation2D.GetNode<Navigation2D>("Navigation2D");
+		_navigation2D = GetNode<Navigation2D>("Navigation2D");
 	}
 
 	public void SetSpriteTexture(Texture spriteTexture)
@@ -37,21 +38,23 @@ public class Flower : Area2D
 		GetNode<Sprite>("Sprite").Texture = spriteTexture;
 	}
 
-	public void SetResource(ResourceTypeEnum resource)
+	public void SetResource(ResourceTypeEnum resource, int minPollenNodes = 5, int maxPollenNodes = 10,
+		float valuePerNode = 1f, float collectionRate = 0.2f)
 	{
 		_resource = resource;
 		GetNode<Sprite>("Sprite").SelfModulate = _flowerColors[resource];
-	}
 
-	public void AcceptLander(Node2D lander)
-	{
-		
+		int nodes = Game.Random.Next(minPollenNodes, maxPollenNodes);
+		for (int i = 0; i < nodes; i++)
+		{
+			int xPosition = Game.Random.Next((int)-PollenSpawnPoint.x, (int)PollenSpawnPoint.x);
+			int yPosition = Game.Random.Next((int)-PollenSpawnPoint.x, (int)PollenSpawnPoint.x);
+			
+			var pollenInstance = Pollen.Instance<PollenDeposit>();
+			pollenInstance.Setup(resource, valuePerNode, collectionRate);
+			pollenInstance.Rotation = Game.Random.Next(0, 360);
+			AddChild(pollenInstance);
+			pollenInstance.Position = new Vector2(xPosition, yPosition);
+		}
 	}
-
-	public void RemoveLander(Node2D lander)
-	{
-		// lander.GetParent().RemoveChild(lander);
-		// Game.CurrentWorld.AddChild(lander);
-	}
-	
 }
