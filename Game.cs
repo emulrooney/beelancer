@@ -7,6 +7,7 @@ using Godot;
 public class Game : Node
 {
 	public static Random Random = new Random();
+	private static Flower _landedFlower = null;
 
 	public static Node2D CurrentWorld { get; private set; }
 
@@ -14,14 +15,21 @@ public class Game : Node
 	{
 		CurrentWorld = GetParent().GetNode<Node2D>("World");
 	}
-	
-	public override void _Process(float delta)
+
+	public static void SetLandedFlower(Flower flower)
 	{
-		if (IsInstanceValid(Beelancer.Current) && IsInstanceValid(GameCamera.Current))
+		_landedFlower = flower;
+		if (flower != null)
 		{
-			//TODO Set zoom based on location
-			//TODO zoom in and out based on velocity
-			GameCamera.Current.Position = Beelancer.Current.Position;
+			GameCamera.Current.LastLandingFocusLocation = flower.GlobalPosition;
+			GameCamera.Current.IsLanded = true;
+			GameCamera.StartLerp();
 		}
+		else
+		{
+			GameCamera.Current.IsLanded = false;
+			GameCamera.ReverseLerp();
+		}
+
 	}
 }

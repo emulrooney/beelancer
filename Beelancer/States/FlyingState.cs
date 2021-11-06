@@ -3,7 +3,7 @@ using System;
 
 public class FlyingState : BeeState
 {
-    public override void StartState()
+    public FlyingState()
     {
         AnimationName = "flying";
         
@@ -11,5 +11,13 @@ public class FlyingState : BeeState
         CanBeHitFromGround = false;
         CanGatherPollen = false;
         CanRotate = true;
+        CanLand = true;
+        CanTakeoff = false;
+        UseFlyingMovement = true;
+    }
+
+    public override void StartState()
+    {
     }
 }
+    

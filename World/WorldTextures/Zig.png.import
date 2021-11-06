@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/grassTexture.jpg-87621d6d8f9171eff0f198ae1fccb48f.stex"
+path="res://.import/Zig.png-e0ef9c80b1e024e4a72c004c1ce29cb1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/grassTexture.jpg"
-dest_files=[ "res://.import/grassTexture.jpg-87621d6d8f9171eff0f198ae1fccb48f.stex" ]
+source_file="res://World/WorldTextures/Zig.png"
+dest_files=[ "res://.import/Zig.png-e0ef9c80b1e024e4a72c004c1ce29cb1.stex" ]
 
 [params]
 

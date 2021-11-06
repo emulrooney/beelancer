@@ -86,7 +86,7 @@ public class Beelancer : RigidBody2D
 
 		move = new Vector2(x, y);
 
-		debugLabel.Text = $"{_currentState.AnimationName} {_landableFlower != null}";
+		debugLabel.Text = $"{_currentState.AnimationName} {_currentState.CanRotate}";
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class Beelancer : RigidBody2D
 	{
 		if (move != Vector2.Zero)
 		{
-			if (move.x != 0)
+			if (move.x != 0 && _currentState.CanRotate)
 			{
 				//Rotation
 				state.AngularVelocity = move.x * RotationSpeed;
@@ -139,30 +139,27 @@ public class Beelancer : RigidBody2D
 
 	public void Land()
 	{
-		GD.Print("Land");
-		if (_currentState.CanLand && IsInstanceValid(_landableFlower))
+		if (_currentState.CanLand && IsInstanceValid(_landableFlower) && _landableFlower.Landable)
 		{
-			GD.Print("Yep");
 			SetState(PlayerStateEnum.Idle);
-			_landableFlower.AcceptLander(this);
+			Game.SetLandedFlower(_landableFlower);
 		}
 	}
 
 	public void Takeoff()
 	{
-		GD.Print("Takeoff");
-		if (_currentState.CanTakeoff && IsInstanceValid(_landableFlower))
+		if (_currentState.CanTakeoff)
 		{
-			GD.Print("Yep");
+			_activeDeposits = new List<PollenDeposit>();
+			
 			SetState(PlayerStateEnum.Takeoff);
-			_landableFlower.RemoveLander(this);
+			Game.SetLandedFlower(null);
 		}
 	}
 
 	//AnimationPlayer
 	private void SetState(PlayerStateEnum state)
 	{
-		GD.Print("Set State: " + state);
 		_currentState = _states[state];
 		_animator.CurrentAnimation = _currentState.AnimationName;
 	}
@@ -223,7 +220,6 @@ public class Beelancer : RigidBody2D
 	//Signalled
 	private void OnPollenCollectorAreaExit(object area)
 	{
-		GD.Print("exit");
 		//TODO On takeoff, remove _all_ areas
 		
 		//if cast fails, do nothing.

@@ -45,8 +45,7 @@ public class Flower : Area2D
 
 	public void AcceptLander(Node2D lander)
 	{
-		// lander.GetParent().RemoveChild(lander);
-		// AddChild(lander);
+		
 	}
 
 	public void RemoveLander(Node2D lander)
