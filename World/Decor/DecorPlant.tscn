@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://World/Leaf/Leaf.tscn" type="PackedScene" id=1]
+[ext_resource path="res://World/Decor/Stems2.png" type="Texture" id=2]
+
+[node name="DecorPlant" type="Node2D"]
+
+[node name="Stems2" type="Sprite" parent="."]
+position = Vector2( 0.972046, 6.4585 )
+texture = ExtResource( 2 )
+
+[node name="Leaf" parent="." instance=ExtResource( 1 )]
+position = Vector2( -198.815, 341.815 )
+
+[node name="Leaf2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 236.435, 158.677 )
+scale = Vector2( 1.1, 0.92 )
+
+[node name="Leaf3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 241.192, -214.734 )
+rotation = 4.5204
+scale = Vector2( 0.7, 0.9 )
+
+[node name="Leaf5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 58.0541, -321.763 )
+rotation = 3.07352
+scale = Vector2( 0.77, 0.9 )
+
+[node name="Leaf4" parent="." instance=ExtResource( 1 )]
+position = Vector2( -213.085, 34.9994 )
+rotation = 1.98968
+scale = Vector2( 0.8, 0.8 )

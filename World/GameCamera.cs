@@ -12,6 +12,8 @@ public class GameCamera : Camera2D
 	public static GameCamera Current { get; set; }
 
 	private AnimationPlayer _animator;
+	private AnimationPlayer _birdAnimator;
+	private bool _birdLeftToRight;
 
 	private TextureRect _bg;
 	private static Vector2 _textureSize;
@@ -30,6 +32,7 @@ public class GameCamera : Camera2D
 		}
 
 		_animator = GetNode<AnimationPlayer>("AnimationPlayer");
+		_birdAnimator = GetNode<AnimationPlayer>("BirdIndicator/AnimationPlayer");
 
 		Current = this;
 		
@@ -58,5 +61,19 @@ public class GameCamera : Camera2D
 	public static void ReverseLerp()
 	{
 		Current._animator.CurrentAnimation = "ToPlayer";
+	}
+
+	public static void BirdTime()
+	{
+		if (Current._birdLeftToRight)
+		{
+			Current._birdAnimator.CurrentAnimation = "RightToLeft";
+			Current._birdLeftToRight = false;
+		}
+		else
+		{
+			Current._birdAnimator.CurrentAnimation = "LeftToRight";
+			Current._birdLeftToRight = true;
+		}
 	}
 }

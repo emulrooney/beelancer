@@ -16,7 +16,7 @@ public class DangerBar : TextureProgress
 	private Timer _activeTimer;
 	private Timer _hiddenTimer;
  
-	private double _currentValue = 33;
+	private double _currentValue = 47;
 	private float _timerIncrementAmount;
 	private float _timerDecrementAmount;
 
@@ -83,6 +83,8 @@ public class DangerBar : TextureProgress
 				GD.Print("Bird Time at " + _currentValue);
 				GD.Print("vs " + _birdIndicatorTimes[i]);
 				_birdAppearances[i] = true;
+
+				GameCamera.BirdTime();
 				//Bird time!
 			}
 		}

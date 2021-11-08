@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://World/FlowerCollection/Stems2.png" type="Texture" id=1]
+[ext_resource path="res://World/Decor/Stems2.png" type="Texture" id=1]
 [ext_resource path="res://World/Flower/Flower2.tscn" type="PackedScene" id=2]
 [ext_resource path="res://World/FlowerCollection/FlowerCollection.cs" type="Script" id=3]
 [ext_resource path="res://World/Flower/Flower1Outlined.png" type="Texture" id=4]

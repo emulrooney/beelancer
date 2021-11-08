@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Stems2.png-b41c7a4f7c5a655c441eac512f0cfa75.stex"
+path="res://.import/Stems3.png-ed146bb3f3d0d7a887dc4bd00d255d6f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/FlowerCollection/Stems2.png"
-dest_files=[ "res://.import/Stems2.png-b41c7a4f7c5a655c441eac512f0cfa75.stex" ]
+source_file="res://World/Decor/Stems3.png"
+dest_files=[ "res://.import/Stems3.png-ed146bb3f3d0d7a887dc4bd00d255d6f.stex" ]
 
 [params]
 

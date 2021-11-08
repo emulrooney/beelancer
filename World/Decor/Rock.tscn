@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://World/Decor/Rock1.png" type="Texture" id=1]
+
+[node name="Rock" type="Sprite"]
+self_modulate = Color( 0.584314, 0.584314, 0.584314, 1 )
+position = Vector2( 0.972046, -0.676758 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}

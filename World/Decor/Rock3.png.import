@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Stems3.png-096513e1719627bd6e6618fe06fe195a.stex"
+path="res://.import/Rock3.png-506ed91cfaf9d562f17c44a91bc1beeb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/FlowerCollection/Stems3.png"
-dest_files=[ "res://.import/Stems3.png-096513e1719627bd6e6618fe06fe195a.stex" ]
+source_file="res://World/Decor/Rock3.png"
+dest_files=[ "res://.import/Rock3.png-506ed91cfaf9d562f17c44a91bc1beeb.stex" ]
 
 [params]
 
