@@ -17,7 +17,6 @@ public class Beelancer : RigidBody2D
 	//Visuals
 	private Label debugLabel; //temp
 	private AnimationPlayer _animator;
-	private Node2D _beeSprite;
 
 	private BeeState _currentState;
 	private Dictionary<PlayerStateEnum, BeeState> _states;
@@ -28,6 +27,8 @@ public class Beelancer : RigidBody2D
 	private Flower _landableFlower;
 	
 	private Timer _collectionTimer;
+	
+	public bool InCover { get; set; }
 
 	public override void _Ready()
 	{
@@ -39,7 +40,7 @@ public class Beelancer : RigidBody2D
 
 		debugLabel = GetNode<Label>("DebugLabel");
 		_animator = GetNode<AnimationPlayer>("AnimationPlayer");
-		_beeSprite = GetNode<Node2D>("BeeSprite");
+		// _beeSprite = GetNode<Node2D>("BeeSprite");
 
 		_collectionTimer = GetNode<Timer>("PollenCollector/Timer");
 		_collectionTimer.Start();

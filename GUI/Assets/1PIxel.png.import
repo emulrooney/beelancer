@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/GUI_Flower.png-57dab2321984e831351fc600aeb6331d.stex"
+path="res://.import/1PIxel.png-8537533a43594453f9799f72b3988bd7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://GUI/GUI_Flower.png"
-dest_files=[ "res://.import/GUI_Flower.png-57dab2321984e831351fc600aeb6331d.stex" ]
+source_file="res://GUI/Assets/1PIxel.png"
+dest_files=[ "res://.import/1PIxel.png-8537533a43594453f9799f72b3988bd7.stex" ]
 
 [params]
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://World/Flower/Flower.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/FlowerCollection/Stems1.png" type="Texture" id=2]
 [ext_resource path="res://World/FlowerCollection/FlowerCollection.cs" type="Script" id=3]
 [ext_resource path="res://World/Flower/Flower1Outlined.png" type="Texture" id=4]
 [ext_resource path="res://World/Flower/Flower2Outlined.png" type="Texture" id=5]
+[ext_resource path="res://World/Leaf/Leaf.tscn" type="PackedScene" id=6]
 
 [node name="Flowers" type="Node2D"]
 script = ExtResource( 3 )
@@ -31,3 +32,13 @@ position = Vector2( 599.627, -94.5807 )
 [node name="Landing4" parent="." instance=ExtResource( 1 )]
 position = Vector2( -25.5724, -405.009 )
 scale = Vector2( 0.77, 0.77 )
+
+[node name="Leaf" parent="." instance=ExtResource( 6 )]
+position = Vector2( -117.855, 195.47 )
+rotation = 0.523599
+scale = Vector2( 0.8, 0.8 )
+
+[node name="Leaf2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 160.83, 123.551 )
+rotation = -0.523599
+scale = Vector2( 0.8, 0.8 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://World/WorldTextures/Zig.png" type="Texture" id=1]
 [ext_resource path="res://Beelancer.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://World/FlowerCollection/FlowerCollection3.tscn" type="PackedScene" id=5]
 [ext_resource path="res://World/FlowerCollection/FlowerCollection2.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Enemies/Bird/BeeEatingBird.png" type="Texture" id=7]
+[ext_resource path="res://World/Yard.cs" type="Script" id=8]
 
 [sub_resource type="Animation" id=1]
 resource_name = "LeftToRight"
@@ -93,7 +94,8 @@ tracks/0/keys = {
 "values": [ 1.0, 0.0 ]
 }
 
-[node name="World" type="Node2D"]
+[node name="Yard" type="Node2D"]
+script = ExtResource( 8 )
 
 [node name="Beelancer" parent="." instance=ExtResource( 2 )]
 z_index = 10
@@ -155,10 +157,8 @@ script = ExtResource( 3 )
 roundProcessTo = Vector2( 0.5, 0.5 )
 
 [node name="BirdIndicator" type="Sprite" parent="Camera2D"]
-visible = false
 self_modulate = Color( 1, 1, 1, 0.117647 )
 position = Vector2( -2000, 0 )
-rotation = -0.785398
 texture = ExtResource( 7 )
 flip_h = true
 
