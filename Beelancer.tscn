@@ -1,10 +1,13 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Beelancer/Assets/beeBody.png" type="Texture" id=1]
 [ext_resource path="res://Beelancer/Beelancer.cs" type="Script" id=2]
 [ext_resource path="res://Beelancer/Assets/beeLegs.png" type="Texture" id=3]
 [ext_resource path="res://Beelancer/Assets/rightWing.png" type="Texture" id=4]
 [ext_resource path="res://Beelancer/Assets/leftWing.png" type="Texture" id=5]
+[ext_resource path="res://Effects/particleWhite_5.png" type="Texture" id=6]
+[ext_resource path="res://Effects/particleWhite_3.png" type="Texture" id=7]
+[ext_resource path="res://Effects/Dust2.png" type="Texture" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 15.7086
@@ -158,6 +161,18 @@ tracks/3/keys = {
 "method": "SetState"
 } ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("BeeSprite/TakeoffParticles:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=7]
 loop = true
@@ -214,6 +229,17 @@ shader = SubResource( 8 )
 shader_param/line_color = Color( 1, 1, 1, 1 )
 shader_param/line_thickness = 1.0
 
+[sub_resource type="Curve" id=10]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.988679, 0 ), 0.0, 1.4, 0, 0 ]
+
+[sub_resource type="Gradient" id=11]
+offsets = PoolRealArray( 0.0495868, 0.0867769, 0.619835, 0.694215 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 0.580392, 0, 1, 1, 0.580392, 0, 1, 0.403922, 0.403922, 0.403922, 1 )
+
+[sub_resource type="Gradient" id=12]
+offsets = PoolRealArray( 0.628099, 1 )
+colors = PoolColorArray( 0.968627, 1, 0, 1, 1, 1, 1, 0 )
+
 [node name="Beelancer" type="RigidBody2D"]
 collision_layer = 512
 collision_mask = 596
@@ -268,17 +294,79 @@ texture = ExtResource( 3 )
 
 [node name="LeftWing" type="Sprite" parent="BeeSprite"]
 position = Vector2( -4, 0 )
-rotation = -0.785398
+rotation = -0.664968
 scale = Vector2( 0.9, 1 )
 z_index = 20
 texture = ExtResource( 5 )
 
 [node name="RightWing" type="Sprite" parent="BeeSprite"]
 position = Vector2( 2, 0 )
-rotation = 0.785398
+rotation = 0.676023
 scale = Vector2( 0.9, 1 )
 z_index = 20
 texture = ExtResource( 4 )
+
+[node name="TakeoffParticles" type="CPUParticles2D" parent="BeeSprite"]
+position = Vector2( 0.000236511, 66.6747 )
+emitting = false
+amount = 6
+lifetime = 1.1
+one_shot = true
+speed_scale = 1.25
+explosiveness = 0.77
+texture = ExtResource( 6 )
+emission_shape = 1
+emission_sphere_radius = 10.0
+linear_accel = 20.0
+tangential_accel_random = 0.5
+damping = 1.0
+angle_random = 0.3
+scale_amount = 0.75
+scale_amount_curve = SubResource( 10 )
+color_ramp = SubResource( 11 )
+
+[node name="ImpactParticles" type="CPUParticles2D" parent="BeeSprite"]
+emitting = false
+one_shot = true
+preprocess = 0.08
+speed_scale = 2.0
+explosiveness = 1.0
+texture = ExtResource( 7 )
+emission_shape = 1
+emission_sphere_radius = 45.0
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 35.0
+angular_velocity = 45.0
+angular_velocity_random = 1.0
+linear_accel = 20.0
+scale_amount = 0.2
+scale_amount_random = 0.1
+color_ramp = SubResource( 12 )
+
+[node name="LandingParticles" type="CPUParticles2D" parent="BeeSprite"]
+position = Vector2( -6.86646e-05, -19.3625 )
+emitting = false
+amount = 6
+one_shot = true
+preprocess = 0.1
+speed_scale = 2.0
+explosiveness = 0.2
+texture = ExtResource( 8 )
+emission_shape = 3
+emission_points = PoolVector2Array( 20, 0, -20, 0 )
+emission_colors = PoolColorArray(  )
+spread = 180.0
+gravity = Vector2( 0, -20 )
+angular_velocity = 45.0
+angular_velocity_random = 1.0
+linear_accel = 10.0
+radial_accel = 20.0
+damping = 1.0
+angle = 180.0
+scale_amount = 0.5
+scale_amount_random = 1.0
+color = Color( 1, 0.811765, 0.694118, 1 )
 
 [connection signal="area_entered" from="LandingShape" to="." method="OnLandingShapeAreaEntered"]
 [connection signal="area_exited" from="LandingShape" to="." method="OnLandingShapeAreaExited"]

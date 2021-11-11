@@ -6,12 +6,19 @@ using Godot;
  */
 public class Game : Node
 {
+	private Game _instance;
+	
+	[Export] private PackedScene Yard { get; set; }
+	[Export] private Beelancer Bee { get; set; }
+	
 	public static Random Random = new Random();
 	public static Yard CurrentYard { get; private set; }
+	
+	private GameState State = GameState.MainMenu;
 
 	public override void _Ready()
 	{
-		CurrentYard = GetParent().GetNode<Yard>("Yard");
+		CurrentYard = GetParent().GetNodeOrNull<Yard>("Yard");
 	}
 
 	public static void SetLandedFlower(Flower flower)
@@ -28,5 +35,41 @@ public class Game : Node
 			GameCamera.ReverseLerp();
 		}
 
+	}
+
+	public static void NewGame()
+	{
+		SetLandedFlower(null);
+		SetGameState(GameState.Gameplay);
+
+		if (IsInstanceValid(CurrentYard))
+		{
+			CurrentYard.QueueFree();
+			CurrentYard = 
+		}
+	}
+
+	public static void MainMenu()
+	{
+		SetGameState(GameState.MainMenu);
+	}
+
+	public static void SetGameState(GameState state)
+	{
+		switch (state)
+		{
+			case GameState.MainMenu:
+				
+				break;
+			case GameState.Gameplay:
+				break;
+			case GameState.HiveMenu:
+				break;
+			case GameState.GameOver:
+				break;
+			default:
+				throw new ArgumentOutOfRangeException(nameof(state), state, null);
+		}
+		 
 	}
 }

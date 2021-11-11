@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ClickPositive.ogg-96a8c4080cf07a0953ca9345446ae221.oggstr"
+
+[deps]
+
+source_file="res://Audio/GUI/ClickPositive.ogg"
+dest_files=[ "res://.import/ClickPositive.ogg-96a8c4080cf07a0953ca9345446ae221.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
