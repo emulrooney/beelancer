@@ -4,7 +4,7 @@
 [ext_resource path="res://GUI/Assets/Fonts/kenvector_future_thin.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://GUI/Theme/HeaderFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://GUI/Theme/MainFont.tres" type="DynamicFont" id=4]
-[ext_resource path="res://GUI/MainMenu.cs" type="Script" id=5]
+[ext_resource path="res://GUI/MainMenu/MainMenu.cs" type="Script" id=5]
 [ext_resource path="res://GUI/Theme/PanelTheme.stylebox" type="StyleBox" id=6]
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -251,6 +251,9 @@ margin_right = -28.0
 margin_bottom = 16.0
 
 [node name="Container2" type="Control" parent="CenterContainer/OptionsMenu/VBoxContainer/VBoxContainer"]
+margin_left = 204.0
+margin_right = 404.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 200, 50 )
 
 [node name="Label" type="Label" parent="CenterContainer/OptionsMenu/VBoxContainer/VBoxContainer/Container2"]

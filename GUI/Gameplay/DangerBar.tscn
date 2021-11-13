@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://GUI/Assets/1PIxel.png" type="Texture" id=2]
-[ext_resource path="res://GUI/DangerBar.cs" type="Script" id=3]
+[ext_resource path="res://GUI/Gameplay/DangerBar.cs" type="Script" id=3]
 
 [node name="DangerBar" type="TextureProgress"]
 anchor_bottom = 1.0

@@ -4,12 +4,12 @@ using System;
 public class MainMenu : Control
 {
 	private PopupDialog _credits;
-	private PopupMenu _options;
+	private PopupPanel _options;
 
 	public override void _Ready()
 	{
 		_credits = GetNode<PopupDialog>("CenterContainer/CreditsDialog");
-		_options = GetNode<PopupMenu>("CenterContainer/OptionsMenu");
+		_options = GetNode<PopupPanel>("CenterContainer/OptionsMenu");
 	}
 
 	private void OnCreditsDismissPressed()

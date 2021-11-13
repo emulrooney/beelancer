@@ -1,8 +1,8 @@
 public enum ResourceTypeEnum
 {
     RedPollen,
-    BluePollen,
     GreenPollen,
+    BluePollen,
     Nectar,
     Honey,
     Energy

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://GUI/Theme/MainFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://GUI/Gameplay/ActionText.cs" type="Script" id=2]
+
+[node name="Text" type="Label"]
+anchor_top = 0.8
+anchor_right = 1.0
+anchor_bottom = 0.95
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.521569, 0.956863, 1, 1 )
+align = 1
+valign = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+NormalColor = Color( 1, 1, 1, 1 )
+MovementColor = Color( 0, 0.717647, 1, 1 )
+ProblemColor = Color( 1, 0.890196, 0, 1 )
+DangerColor = Color( 1, 0.305882, 0, 1 )

@@ -15,7 +15,6 @@ public class Beelancer : RigidBody2D
 	private Vector2 move;
 
 	//Visuals
-	private Label debugLabel; //temp
 	private AnimationPlayer _animator;
 
 	private BeeState _currentState;
@@ -37,8 +36,6 @@ public class Beelancer : RigidBody2D
 			Current.QueueFree();
 		}
 		Current = this;
-
-		debugLabel = GetNode<Label>("DebugLabel");
 		_animator = GetNode<AnimationPlayer>("AnimationPlayer");
 		// _beeSprite = GetNode<Node2D>("BeeSprite");
 
@@ -72,6 +69,10 @@ public class Beelancer : RigidBody2D
 		x += Input.IsActionPressed("ui_right") ? 1 : 0;
 		y += Input.IsActionPressed("ui_up") ? 1 : 0;
 		y -= Input.IsActionPressed("ui_down") ? 1 : 0;
+		
+		if (Input.IsKeyPressed((int)KeyList.P)) {
+			GUIManager.SetGameState(GameState.HiveMenu);
+		}
 
 		if (Input.IsActionJustPressed("land"))
 		{
@@ -86,8 +87,6 @@ public class Beelancer : RigidBody2D
 		}
 
 		move = new Vector2(x, y);
-
-		debugLabel.Text = $"{_currentState.AnimationName} {_currentState.CanRotate}";
 	}
 
 	/**
@@ -152,7 +151,6 @@ public class Beelancer : RigidBody2D
 		if (_currentState.CanTakeoff)
 		{
 			_activeDeposits = new List<PollenDeposit>();
-			
 			SetState(PlayerStateEnum.Takeoff);
 			Game.SetLandedFlower(null);
 		}
@@ -203,6 +201,16 @@ public class Beelancer : RigidBody2D
 		_states.Add(PlayerStateEnum.Takeoff, new TakeoffState());
 		_states.Add(PlayerStateEnum.Landing, new LandingState());
 	}
+
+	public float GetResourceQuantity(ResourceTypeEnum resource)
+	{
+		return _collected[resource];
+	}
+
+	public void SetResourceQuantity(ResourceTypeEnum resource, float value)
+	{
+		_collected[resource] = value;
+	}
 	
 	/* SIGNALLED */
 
@@ -235,6 +243,7 @@ public class Beelancer : RigidBody2D
 	{
 		if (area is Flower flower)
 		{
+			ActionText.SetText(ActionTextType.Land);
 			_landableFlower = flower;
 		}	
 	}
@@ -244,11 +253,11 @@ public class Beelancer : RigidBody2D
 	{
 		if (area is Flower flower)
 		{
+			ActionText.DismissText();
 			if (!_currentState.UseFlyingMovement)
 			{
 				Takeoff();
 			}
-			
 			_landableFlower = null;
 		}
 	}

@@ -35,8 +35,8 @@ public class ResourceCounters : VBoxContainer
 			{ResourceTypeEnum.RedPollen, GetNode<Label>("RedPollen/Label")},
 			{ResourceTypeEnum.BluePollen, GetNode<Label>("BluePollen/Label")},
 			{ResourceTypeEnum.GreenPollen, GetNode<Label>("GreenPollen/Label")},
-			// {ResourceTypeEnum.Honey, GetNode<Label>("GreenPollen/Label")}, //TODO Add label
-			{ResourceTypeEnum.Nectar, GetNode<Label>("Nectar/Label")},
+			{ResourceTypeEnum.Honey, GetNode<Label>("Honey/Label")},
+			// {ResourceTypeEnum.Nectar, GetNode<Label>("Nectar/Label")},
 			// {ResourceTypeEnum.Energy, GetNode<Label>("GreenPollen/Label")}, //TODO Add label
 		};
 

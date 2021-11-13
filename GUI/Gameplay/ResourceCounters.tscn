@@ -1,24 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://GUI/Assets/GUI_Flower.png" type="Texture" id=1]
-[ext_resource path="res://GUI/ResourceCounters.cs" type="Script" id=2]
-[ext_resource path="res://GUI/GUIPanel.shader" type="Shader" id=3]
+[ext_resource path="res://GUI/Gameplay/ResourceCounters.cs" type="Script" id=1]
+[ext_resource path="res://GUI/Assets/GUI_Flower.png" type="Texture" id=2]
+[ext_resource path="res://GUI/Theme/BeeTheme.tres" type="Theme" id=3]
 
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 3 )
-shader_param/blur_amount = 10.0
-shader_param/mix_amount = 0.5
-shader_param/color_over = Color( 0.305882, 0.305882, 0.305882, 1 )
-
-[node name="ColorRect" type="ColorRect"]
-material = SubResource( 1 )
+[node name="ResourceCounters" type="Panel"]
 anchor_left = 0.9
 anchor_right = 1.0
 anchor_bottom = 0.261
 margin_top = 16.0
 margin_right = -9.0
 margin_bottom = 0.0599976
-color = Color( 0, 1, 1, 1 )
+theme = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -27,21 +20,22 @@ __meta__ = {
 anchor_right = 1.0
 margin_left = 4.0
 margin_top = 4.0
-margin_right = -10.0
+margin_right = -3.0
 margin_bottom = 120.0
-script = ExtResource( 2 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RedPollen" type="HBoxContainer" parent="ResourceContainer"]
-margin_right = 75.0
+margin_right = 80.0
 margin_bottom = 26.0
 alignment = 2
 
 [node name="Label" type="Label" parent="ResourceContainer/RedPollen"]
+margin_left = 5.0
 margin_top = 1.0
-margin_right = 45.0
+margin_right = 50.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 45, 24 )
 text = "0.00"
@@ -53,23 +47,24 @@ __meta__ = {
 
 [node name="TextureRect" type="TextureRect" parent="ResourceContainer/RedPollen"]
 modulate = Color( 1, 0.541176, 0.384314, 1 )
-margin_left = 49.0
-margin_right = 75.0
+margin_left = 54.0
+margin_right = 80.0
 margin_bottom = 26.0
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="GreenPollen" type="HBoxContainer" parent="ResourceContainer"]
 margin_top = 30.0
-margin_right = 75.0
+margin_right = 80.0
 margin_bottom = 56.0
 alignment = 2
 
 [node name="Label" type="Label" parent="ResourceContainer/GreenPollen"]
+margin_left = 5.0
 margin_top = 1.0
-margin_right = 45.0
+margin_right = 50.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 45, 24 )
 text = "0.00"
@@ -81,23 +76,24 @@ __meta__ = {
 
 [node name="TextureRect" type="TextureRect" parent="ResourceContainer/GreenPollen"]
 self_modulate = Color( 0.368627, 1, 0.956863, 1 )
-margin_left = 49.0
-margin_right = 75.0
+margin_left = 54.0
+margin_right = 80.0
 margin_bottom = 26.0
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BluePollen" type="HBoxContainer" parent="ResourceContainer"]
 margin_top = 60.0
-margin_right = 75.0
+margin_right = 80.0
 margin_bottom = 86.0
 alignment = 2
 
 [node name="Label" type="Label" parent="ResourceContainer/BluePollen"]
+margin_left = 5.0
 margin_top = 1.0
-margin_right = 45.0
+margin_right = 50.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 45, 24 )
 text = "0.00"
@@ -109,37 +105,31 @@ __meta__ = {
 
 [node name="TextureRect" type="TextureRect" parent="ResourceContainer/BluePollen"]
 self_modulate = Color( 0.4, 0.603922, 1, 1 )
-margin_left = 49.0
-margin_right = 75.0
+margin_left = 54.0
+margin_right = 80.0
 margin_bottom = 26.0
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Nectar" type="HBoxContainer" parent="ResourceContainer"]
+[node name="Honey" type="HBoxContainer" parent="ResourceContainer"]
+modulate = Color( 0, 1, 0.32549, 1 )
+self_modulate = Color( 0.447059, 1, 0.419608, 1 )
 margin_top = 90.0
-margin_right = 75.0
-margin_bottom = 116.0
+margin_right = 80.0
+margin_bottom = 118.0
+rect_min_size = Vector2( 0, 28 )
 alignment = 2
 
-[node name="Label" type="Label" parent="ResourceContainer/Nectar"]
-margin_top = 1.0
-margin_right = 45.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 45, 24 )
-text = "0.00"
-align = 2
+[node name="Label" type="Label" parent="ResourceContainer/Honey"]
+margin_top = 5.0
+margin_right = 80.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 80, 0 )
+text = "0.00$"
+align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="ResourceContainer/Nectar"]
-margin_left = 49.0
-margin_right = 75.0
-margin_bottom = 26.0
-texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

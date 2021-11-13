@@ -11,12 +11,12 @@ config_version=4
 [application]
 
 config/name="Beelancer"
-run/main_scene="res://World/World.tscn"
+run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Game="*res://Game.cs"
+Game="*res://Game.tscn"
 GUI="*res://GUI/GUI.tscn"
 
 [display]

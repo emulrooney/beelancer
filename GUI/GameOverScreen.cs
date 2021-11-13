@@ -12,7 +12,7 @@ public class GameOverScreen : CenterContainer
 
 	private void OnMainMenuButtonPressed()
 	{
-		Game.MainMenu();
+		Game.ShowMainMenu();
 		Visible = false;
 	}	
 }
