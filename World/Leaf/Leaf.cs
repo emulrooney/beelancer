@@ -17,6 +17,7 @@ public class Leaf : Area2D
 	{
 		if (body is Beelancer bee)
 		{
+			ZIndex = 2000;
 			Modulate = _transparentColor;
 			Beelancer.Current.InCover = true;
 			
@@ -29,6 +30,7 @@ public class Leaf : Area2D
 	{
 		if (body is Beelancer bee)
 		{
+			ZIndex = 0;
 			Modulate = _initialColor;
 			Beelancer.Current.InCover = false;
 			
