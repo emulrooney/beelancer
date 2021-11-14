@@ -1,0 +1,489 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://GUI/Theme/HeaderFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://GUI/Theme/BeeTheme.tres" type="Theme" id=2]
+[ext_resource path="res://World/Flower/Flower1Outlined.png" type="Texture" id=3]
+[ext_resource path="res://GUI/HiveMenu/HiveMenu.cs" type="Script" id=4]
+[ext_resource path="res://GUI/Assets/Hexagon.png" type="Texture" id=5]
+[ext_resource path="res://GUI/Assets/EmptyHexagon.png" type="Texture" id=6]
+
+[node name="HiveMenu" type="CenterContainer"]
+anchor_bottom = 1.0
+margin_left = 180.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_top = 132.0
+margin_right = 600.0
+margin_bottom = 407.0
+rect_min_size = Vector2( 600, 275 )
+theme = ExtResource( 2 )
+
+[node name="Hive Name" type="Label" parent="Panel"]
+anchor_right = 1.0
+margin_top = 4.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 1 )
+text = "petunia-ville hive"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="Panel"]
+anchor_top = 0.1
+anchor_bottom = 0.1
+margin_right = 300.0
+margin_bottom = 350.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/Control"]
+anchor_right = 1.0
+margin_left = 16.0
+margin_bottom = 350.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Trading" type="VBoxContainer" parent="Panel/Control/HBoxContainer"]
+margin_right = 300.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 300, 350 )
+
+[node name="Label" type="Label" parent="Panel/Control/HBoxContainer/Trading"]
+margin_right = 300.0
+margin_bottom = 18.0
+text = "Trading:"
+align = 1
+
+[node name="Panel" type="Panel" parent="Panel/Control/HBoxContainer/Trading"]
+self_modulate = Color( 0.258824, 0.258824, 0.258824, 0.505882 )
+margin_top = 22.0
+margin_right = 300.0
+margin_bottom = 182.0
+rect_min_size = Vector2( 0, 160 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/Control/HBoxContainer/Trading/Panel"]
+margin_right = 288.0
+margin_bottom = 200.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buying Side" type="VBoxContainer" parent="Panel/Control/HBoxContainer/Trading/Panel/HBoxContainer"]
+margin_right = 140.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 140, 200 )
+
+[node name="Label" type="Label" parent="Panel/Control/HBoxContainer/Trading/Panel/HBoxContainer/Buying Side"]
+margin_right = 140.0
+margin_bottom = 18.0
+text = "Buying"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Control/HBoxContainer/Trading/Panel/HBoxContainer/Buying Side"]
+margin_top = 22.0
+margin_right = 140.0
+margin_bottom = 102.0
+grow_horizontal = 0
+rect_min_size = Vector2( 80, 80 )
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Amount" type="Label" parent="Panel/Control/HBoxContainer/Trading/Panel/HBoxContainer/Buying Side"]
+margin_top = 106.0
+margin_right = 140.0
+margin_bottom = 124.0
+text = "For 1.07/unit"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PurchaseButton" type="Button" parent="Panel/Control/HBoxContainer/Trading/Panel/HBoxContainer/Buying Side"]
+margin_top = 128.0
+margin_right = 140.0
+margin_bottom = 152.0
+text = "buy"
+
+[node name="Selling Side" type="VBoxContainer" parent="Panel/Control/HBoxContainer/Trading/Panel/HBoxContainer"]
+margin_left = 144.0
+margin_right = 284.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 140, 200 )
+
+[node name="Label" type="Label" parent="Panel/Control/HBoxContainer/Trading/Panel/HBoxContainer/Selling Side"]
+margin_right = 140.0
+margin_bottom = 18.0
+text = "Selling"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Control/HBoxContainer/Trading/Panel/HBoxContainer/Selling Side"]
+margin_top = 22.0
+margin_right = 140.0
+margin_bottom = 102.0
+grow_horizontal = 0
+rect_min_size = Vector2( 80, 80 )
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Amount" type="Label" parent="Panel/Control/HBoxContainer/Trading/Panel/HBoxContainer/Selling Side"]
+margin_top = 106.0
+margin_right = 140.0
+margin_bottom = 124.0
+text = "For .99/unit"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SellButton" type="Button" parent="Panel/Control/HBoxContainer/Trading/Panel/HBoxContainer/Selling Side"]
+margin_top = 128.0
+margin_right = 140.0
+margin_bottom = 152.0
+text = "sell"
+
+[node name="Upgrades" type="VBoxContainer" parent="Panel/Control/HBoxContainer"]
+margin_left = 304.0
+margin_right = 564.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 260, 0 )
+
+[node name="Label" type="Label" parent="Panel/Control/HBoxContainer/Upgrades"]
+margin_right = 260.0
+margin_bottom = 18.0
+text = "Upgrades:"
+align = 1
+
+[node name="Panel" type="Panel" parent="Panel/Control/HBoxContainer/Upgrades"]
+self_modulate = Color( 0.258824, 0.258824, 0.258824, 0.505882 )
+margin_top = 22.0
+margin_right = 260.0
+margin_bottom = 182.0
+rect_min_size = Vector2( 0, 160 )
+
+[node name="GridContainer" type="GridContainer" parent="Panel/Control/HBoxContainer/Upgrades/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CarryUpgrade" type="Button" parent="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer"]
+margin_right = 83.0
+margin_bottom = 77.0
+rect_min_size = Vector2( 83, 77 )
+
+[node name="Label" type="Label" parent="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer/CarryUpgrade"]
+anchor_right = 1.0
+margin_bottom = 18.0
+text = "carry"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer/CarryUpgrade"]
+self_modulate = Color( 1, 0.447059, 0.447059, 1 )
+anchor_left = 0.08
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 16.0
+margin_right = -13.0
+margin_bottom = -1.0
+rect_scale = Vector2( 0.8, 0.8 )
+max_value = 6.0
+value = 1.0
+texture_under = ExtResource( 6 )
+texture_progress = ExtResource( 5 )
+fill_mode = 4
+radial_initial_angle = 203.9
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Price" type="Label" parent="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer/CarryUpgrade"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "10"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="AccelerateUpgrade" type="Button" parent="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer"]
+margin_left = 87.0
+margin_right = 170.0
+margin_bottom = 77.0
+rect_min_size = Vector2( 83, 77 )
+
+[node name="Label2" type="Label" parent="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer/AccelerateUpgrade"]
+anchor_right = 1.0
+margin_bottom = 18.0
+text = "Accel."
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer/AccelerateUpgrade"]
+self_modulate = Color( 0, 1, 0.811765, 1 )
+anchor_left = 0.08
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 16.0
+margin_right = -13.0
+margin_bottom = -1.0
+rect_scale = Vector2( 0.8, 0.8 )
+max_value = 6.0
+value = 1.0
+texture_under = ExtResource( 6 )
+texture_progress = ExtResource( 5 )
+fill_mode = 4
+radial_initial_angle = 203.9
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Price" type="Label" parent="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer/AccelerateUpgrade"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "10"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="SneakUpgrade" type="Button" parent="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer"]
+margin_left = 174.0
+margin_right = 257.0
+margin_bottom = 77.0
+rect_min_size = Vector2( 83, 77 )
+
+[node name="Label" type="Label" parent="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer/SneakUpgrade"]
+anchor_right = 1.0
+margin_bottom = 18.0
+text = "SNEAK"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer/SneakUpgrade"]
+self_modulate = Color( 0.266667, 0, 1, 1 )
+anchor_left = 0.08
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 16.0
+margin_right = -13.0
+margin_bottom = -1.0
+rect_scale = Vector2( 0.8, 0.8 )
+max_value = 6.0
+value = 1.0
+texture_under = ExtResource( 6 )
+texture_progress = ExtResource( 5 )
+fill_mode = 4
+radial_initial_angle = 203.9
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Price" type="Label" parent="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer/SneakUpgrade"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "10"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="TradeUpgrade" type="Button" parent="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer"]
+margin_top = 81.0
+margin_right = 83.0
+margin_bottom = 158.0
+rect_min_size = Vector2( 83, 77 )
+
+[node name="Label" type="Label" parent="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer/TradeUpgrade"]
+anchor_right = 1.0
+margin_bottom = 18.0
+text = "TRADE"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer/TradeUpgrade"]
+self_modulate = Color( 1, 0.447059, 0.447059, 1 )
+anchor_left = 0.08
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 16.0
+margin_right = -13.0
+margin_bottom = -1.0
+rect_scale = Vector2( 0.8, 0.8 )
+max_value = 6.0
+value = 1.0
+texture_under = ExtResource( 6 )
+texture_progress = ExtResource( 5 )
+fill_mode = 4
+radial_initial_angle = 203.9
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Price" type="Label" parent="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer/TradeUpgrade"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "10"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="SpeedUpgrade" type="Button" parent="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer"]
+margin_left = 87.0
+margin_top = 81.0
+margin_right = 170.0
+margin_bottom = 158.0
+rect_min_size = Vector2( 83, 77 )
+
+[node name="Label" type="Label" parent="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer/SpeedUpgrade"]
+anchor_right = 1.0
+margin_bottom = 18.0
+text = "SPEED"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer/SpeedUpgrade"]
+self_modulate = Color( 0, 1, 0.811765, 1 )
+anchor_left = 0.08
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 16.0
+margin_right = -13.0
+margin_bottom = -1.0
+rect_scale = Vector2( 0.8, 0.8 )
+max_value = 6.0
+value = 1.0
+texture_under = ExtResource( 6 )
+texture_progress = ExtResource( 5 )
+fill_mode = 4
+radial_initial_angle = 203.9
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Price" type="Label" parent="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer/SpeedUpgrade"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "10"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="GatherUpgrade" type="Button" parent="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer"]
+margin_left = 174.0
+margin_top = 81.0
+margin_right = 257.0
+margin_bottom = 158.0
+rect_min_size = Vector2( 83, 77 )
+
+[node name="Label" type="Label" parent="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer/GatherUpgrade"]
+anchor_right = 1.0
+margin_bottom = 18.0
+text = "GATHER"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer/GatherUpgrade"]
+self_modulate = Color( 0.266667, 0, 1, 1 )
+anchor_left = 0.08
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 16.0
+margin_right = -13.0
+margin_bottom = -1.0
+rect_scale = Vector2( 0.8, 0.8 )
+max_value = 6.0
+value = 1.0
+texture_under = ExtResource( 6 )
+texture_progress = ExtResource( 5 )
+fill_mode = 4
+radial_initial_angle = 203.9
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Price" type="Label" parent="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer/GatherUpgrade"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "10"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="LeaveHive" type="Button" parent="Panel"]
+margin_left = 18.0
+margin_top = 220.0
+margin_right = 580.0
+margin_bottom = 265.0
+text = "Leave Hive!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Panel/Control/HBoxContainer/Trading/Panel/HBoxContainer/Buying Side/PurchaseButton" to="." method="OnPurchasePressed"]
+[connection signal="pressed" from="Panel/Control/HBoxContainer/Trading/Panel/HBoxContainer/Selling Side/SellButton" to="." method="OnSellPressed"]
+[connection signal="pressed" from="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer/CarryUpgrade" to="." method="OnUpgradePressed" binds= [ 0 ]]
+[connection signal="pressed" from="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer/AccelerateUpgrade" to="." method="OnUpgradePressed" binds= [ 1 ]]
+[connection signal="pressed" from="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer/SneakUpgrade" to="." method="OnUpgradePressed" binds= [ 2 ]]
+[connection signal="pressed" from="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer/TradeUpgrade" to="." method="OnUpgradePressed" binds= [ 3 ]]
+[connection signal="pressed" from="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer/SpeedUpgrade" to="." method="OnUpgradePressed" binds= [ 4 ]]
+[connection signal="pressed" from="Panel/Control/HBoxContainer/Upgrades/Panel/GridContainer/GatherUpgrade" to="." method="OnUpgradePressed" binds= [ 5 ]]
+[connection signal="pressed" from="Panel/LeaveHive" to="." method="OnLeaveHivePressed"]
