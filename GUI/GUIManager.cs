@@ -10,23 +10,23 @@ public class GUIManager : CanvasLayer
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 	}
 	
-	public static void SetGameState(GameState state)
+	public static void SetGameState(GameStateEnum stateEnum)
 	{
-		switch (state)
+		switch (stateEnum)
 		{
-			case GameState.MainMenu:
-			case GameState.HiveMenu:
+			case GameStateEnum.MainMenu:
+			case GameStateEnum.HiveMenu:
 				animationPlayer.CurrentAnimation = "HiveMenu";
 				HiveMenu.ShowMenu();
 				break;
-			case GameState.GameOver:
+			case GameStateEnum.GameOver:
 				animationPlayer.CurrentAnimation = "MainMenu";
 				break;
-			case GameState.Gameplay:
+			case GameStateEnum.Gameplay:
 				animationPlayer.CurrentAnimation = "Gameplay";
 				break;
 			default:
-				throw new ArgumentOutOfRangeException(nameof(state), state, null);
+				throw new ArgumentOutOfRangeException(nameof(stateEnum), stateEnum, null);
 		}
 	}
 }

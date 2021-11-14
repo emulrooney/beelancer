@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public enum ActionTextType
+public enum ActionTextEnum
 {
     Land,
     Takeoff,

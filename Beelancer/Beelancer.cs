@@ -29,6 +29,8 @@ public class Beelancer : RigidBody2D
 	
 	public bool InCover { get; set; }
 
+	public Dictionary<UpgradeTypeEnum, int> Levels { get; private set; }
+
 	public override void _Ready()
 	{
 		if (IsInstanceValid(Current))
@@ -47,14 +49,15 @@ public class Beelancer : RigidBody2D
 			{ResourceTypeEnum.RedPollen, 0f},
 			{ResourceTypeEnum.BluePollen, 0f},
 			{ResourceTypeEnum.GreenPollen, 0f},
-			// {ResourceTypeEnum.Honey, 0f},
-			{ResourceTypeEnum.Nectar, 0f},
-			// {ResourceTypeEnum.Energy, 0f},
+			{ResourceTypeEnum.Honey, 0f}
 		};
 		
 		SetupStates();
 		SetState(PlayerStateEnum.Takeoff);
 		_animator.CurrentAnimation = _currentState.AnimationName;
+
+		Levels = new Dictionary<UpgradeTypeEnum, int>();
+		
 	}
 
 	/**
@@ -71,7 +74,7 @@ public class Beelancer : RigidBody2D
 		y -= Input.IsActionPressed("ui_down") ? 1 : 0;
 		
 		if (Input.IsKeyPressed((int)KeyList.P)) {
-			GUIManager.SetGameState(GameState.HiveMenu);
+			GUIManager.SetGameState(GameStateEnum.HiveMenu);
 		}
 
 		if (Input.IsActionJustPressed("land"))
@@ -207,9 +210,10 @@ public class Beelancer : RigidBody2D
 		return _collected[resource];
 	}
 
-	public void SetResourceQuantity(ResourceTypeEnum resource, float value)
+	public void ModifyResourceQuantity(ResourceTypeEnum resource, float value)
 	{
-		_collected[resource] = value;
+		_collected[resource] += value;
+		ResourceCounters.UpdatePlayerCollection(_collected);
 	}
 	
 	/* SIGNALLED */
@@ -243,7 +247,7 @@ public class Beelancer : RigidBody2D
 	{
 		if (area is Flower flower)
 		{
-			ActionText.SetText(ActionTextType.Land);
+			ActionText.SetText(ActionTextEnum.Land);
 			_landableFlower = flower;
 		}	
 	}

@@ -11,38 +11,38 @@ public class ActionText : Label
 	[Export] private Color DangerColor { get; set; }
 
 	//TODO Could create a struct for these and combine into one
-	private static Dictionary<ActionTextType, string> _text;
-	private static Dictionary<ActionTextType, Color> _textColors;
+	private static Dictionary<ActionTextEnum, string> _text;
+	private static Dictionary<ActionTextEnum, Color> _textColors;
 
 	public override void _Ready()
 	{
 		Current = this;
 		
-		_text = new Dictionary<ActionTextType, string>
+		_text = new Dictionary<ActionTextEnum, string>
 		{
-			{ActionTextType.Land, "Press [Spacebar] to land."},
-			{ActionTextType.Takeoff, "Press [Spacebar] to takeoff."},
-			{ActionTextType.Heavy, "You're weighed down with pollen! Head to a hive to trade."},
-			{ActionTextType.BirdDanger, "A bird is about to strike - find cover or hide in a hive!"},
-			{ActionTextType.EnterHive, "Press [Spacebar] to enter hive."},
-			{ActionTextType.LeaveYard, "Press [Spacebar] to exit the yard."},
+			{ActionTextEnum.Land, "Press [Spacebar] to land."},
+			{ActionTextEnum.Takeoff, "Press [Spacebar] to takeoff."},
+			{ActionTextEnum.Heavy, "You're weighed down with pollen! Head to a hive to trade."},
+			{ActionTextEnum.BirdDanger, "A bird is about to strike - find cover or hide in a hive!"},
+			{ActionTextEnum.EnterHive, "Press [Spacebar] to enter hive."},
+			{ActionTextEnum.LeaveYard, "Press [Spacebar] to exit the yard."},
 		};	
 		
-		_textColors = new Dictionary<ActionTextType, Color>
+		_textColors = new Dictionary<ActionTextEnum, Color>
 		{
-			{ActionTextType.Land, NormalColor},
-			{ActionTextType.Takeoff, MovementColor},
-			{ActionTextType.Heavy, ProblemColor},
-			{ActionTextType.BirdDanger, DangerColor},
-			{ActionTextType.EnterHive, MovementColor},
-			{ActionTextType.LeaveYard, MovementColor},
+			{ActionTextEnum.Land, NormalColor},
+			{ActionTextEnum.Takeoff, MovementColor},
+			{ActionTextEnum.Heavy, ProblemColor},
+			{ActionTextEnum.BirdDanger, DangerColor},
+			{ActionTextEnum.EnterHive, MovementColor},
+			{ActionTextEnum.LeaveYard, MovementColor},
 		};
 	}
 
-	public static void SetText(ActionTextType textType)
+	public static void SetText(ActionTextEnum textEnum)
 	{
-		Current.Text = _text[textType];
-		Current.SelfModulate = _textColors[textType];
+		Current.Text = _text[textEnum];
+		Current.SelfModulate = _textColors[textEnum];
 		Current.Visible = true;
 	}
 

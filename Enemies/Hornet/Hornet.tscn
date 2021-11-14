@@ -242,6 +242,8 @@ radius = 150.0
 collision_layer = 512
 collision_mask = 596
 gravity_scale = 0.0
+contacts_reported = 4
+contact_monitor = true
 angular_damp = 0.0
 script = ExtResource( 2 )
 
@@ -354,5 +356,6 @@ color = Color( 1, 0.811765, 0.694118, 1 )
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="DetectPlayerArea"]
 shape = SubResource( 11 )
 
+[connection signal="body_entered" from="." to="." method="OnHornetBodyCollision"]
 [connection signal="body_entered" from="DetectPlayerArea" to="." method="OnDetectPlayerAreaBodyEntered"]
 [connection signal="body_exited" from="DetectPlayerArea" to="." method="OnDetectPlayerAreaBodyExited"]

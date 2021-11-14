@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 
 /**
@@ -13,19 +14,20 @@ public class Game : Node
 	
 	public static Random Random = new Random();
 	public static Yard CurrentYard { get; private set; }
-
-	public static MainMenu MainMenu { get; private set; }
+	public static Dictionary<UpgradeTypeEnum, int> CurrentLevels;
 	
-	private GameState State = GameState.MainMenu;
+
+	private static MainMenu _mainMenu;
+	private GameStateEnum _stateEnum = GameStateEnum.MainMenu;
 
 	public override void _Ready()
 	{
 		CurrentYard = GetParent().GetNodeOrNull<Yard>("Yard");
-		MainMenu = GetNode<MainMenu>("MainMenu");
+		_mainMenu = GetNode<MainMenu>("MainMenu");
 
 		if (!IsInstanceValid(CurrentYard))
 		{
-			MainMenu.Visible = true;
+			_mainMenu.Visible = true;
 		}
 		
 		_instance = this;
@@ -40,7 +42,7 @@ public class Game : Node
 			GameCamera.Current.LastLandingFocusLocation = flower.GlobalPosition;
 			GameCamera.Current.IsLanded = true;
 			GameCamera.StartLerp();
-			ActionText.SetText(ActionTextType.Takeoff);
+			ActionText.SetText(ActionTextEnum.Takeoff);
 		}
 		else
 		{
@@ -54,26 +56,33 @@ public class Game : Node
 	public static void NewGame()
 	{
 		SetLandedFlower(null);
-		GUIManager.SetGameState(GameState.Gameplay);
+		GUIManager.SetGameState(GameStateEnum.Gameplay);
 
 		if (IsInstanceValid(CurrentYard))
 		{
 			CurrentYard.QueueFree();
 		}
 		
-		MainMenu.Visible = false;
+		_mainMenu.Visible = false;
 		
 		CurrentYard = _instance.Yard.Instance<Yard>();
 		_instance.AddChild(CurrentYard);
+	
+		
+		CurrentLevels = new Dictionary<UpgradeTypeEnum, int>();
+		foreach (UpgradeTypeEnum upgrade in Enum.GetValues(typeof(UpgradeTypeEnum)))
+		{
+			CurrentLevels.Add(upgrade, 1);
+		}
 	}
 
 	public static void ShowMainMenu()
 	{
-		GUIManager.SetGameState(GameState.MainMenu);
+		GUIManager.SetGameState(GameStateEnum.MainMenu);
 		
 		CurrentYard.QueueFree();
 
-		MainMenu.Visible = true;
+		_mainMenu.Visible = true;
 	}
 	
 }

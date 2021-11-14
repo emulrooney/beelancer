@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public enum GameState
+public enum GameStateEnum
 {
     MainMenu,
     Gameplay,

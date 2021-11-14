@@ -9,13 +9,13 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 outline_size = 2
 outline_color = Color( 0.0156863, 0.0156863, 0.0156863, 1 )
 font_data = ExtResource( 2 )
 
-[sub_resource type="Theme" id=4]
-default_font = SubResource( 3 )
+[sub_resource type="Theme" id=3]
+default_font = SubResource( 2 )
 Panel/styles/panel = ExtResource( 6 )
 PopupMenu/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
 PopupMenu/colors/font_color_accel = Color( 0.7, 0.7, 0.7, 0.8 )
@@ -72,7 +72,7 @@ margin_left = -2.0
 margin_top = 1.0
 margin_right = -2.0
 margin_bottom = 1.0
-theme = SubResource( 4 )
+theme = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -169,7 +169,7 @@ margin_top = 20.0
 margin_right = 730.0
 margin_bottom = 520.0
 rect_min_size = Vector2( 500, 500 )
-theme = SubResource( 4 )
+theme = SubResource( 3 )
 custom_styles/panel = ExtResource( 6 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/CreditsDialog"]
@@ -225,12 +225,16 @@ rect_min_size = Vector2( 600, 400 )
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/OptionsMenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 3.00494
+margin_top = 3.09938
+margin_right = -2.57568
+margin_bottom = -3.2196
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="HBoxContainer" parent="CenterContainer/OptionsMenu/VBoxContainer"]
-margin_right = 600.0
+margin_right = 594.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 0, 50 )
 
@@ -269,7 +273,7 @@ margin_bottom = 16.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/OptionsMenu/VBoxContainer"]
 margin_top = 54.0
-margin_right = 600.0
+margin_right = 594.0
 margin_bottom = 78.0
 
 [node name="SaveOptions" type="Button" parent="CenterContainer/OptionsMenu/VBoxContainer/HBoxContainer"]
