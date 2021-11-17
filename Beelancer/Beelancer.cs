@@ -5,12 +5,17 @@ using System.Data;
 
 public class Beelancer : RigidBody2D
 {
-	[Export] public float AccelerationForce = 200f;
-	[Export] public float MaxVelocity = 200f;
+	[Export] public float AccelerationForce = 100f;
+	[Export] public float MaxVelocity = 150f;
 	[Export] public float WalkSpeed = 50f;
 	[Export] public float RotationSpeed = 100f;
-	[Export] public float BrakePower = 20f;
-	
+
+	[Export] public float AccelerationBonusPerUpgrade = 1f;
+	[Export] public float MaxVelocityBonusPerUpgrade = 5f;
+	[Export] public float WalkSpeedBonusPerUpgrade = 4f;
+	[Export] public float MaxGatherBonusPerUpgrade = .01f;
+
+
 	public static Beelancer Current { get; private set; }
 	private Vector2 move;
 
@@ -22,6 +27,8 @@ public class Beelancer : RigidBody2D
 
 	private List<PollenDeposit> _activeDeposits = new List<PollenDeposit>();
 	private Dictionary<ResourceTypeEnum, float> _collected;
+	
+	private float _pollenWeight = 0f;
 
 	private Flower _landableFlower;
 	
@@ -110,7 +117,8 @@ public class Beelancer : RigidBody2D
 				if (_currentState.UseFlyingMovement)
 				{
 					//Apply actual force
-					ApplyCentralImpulse(Transform.x * AccelerationForce);
+					var acceleration = AccelerationForce + GetBonus(UpgradeTypeEnum.Accelerate);
+					ApplyCentralImpulse(Transform.x * acceleration);
 					
 					float vX = AppliedForce.x;
 					float vY = AppliedForce.y;
@@ -120,14 +128,14 @@ public class Beelancer : RigidBody2D
 					if (Math.Abs(vX) > MaxVelocity || Math.Abs(vY) > MaxVelocity)
 					{
 						var terminalVelocity = AppliedForce.Normalized();
-						terminalVelocity *= MaxVelocity;
+						terminalVelocity *= MaxVelocity + GetBonus(UpgradeTypeEnum.Speed);
 						AppliedForce = terminalVelocity;
 					}
 				}
 				else
 				{
 					SetState(PlayerStateEnum.Walking);
-					LinearVelocity = (Transform.x * WalkSpeed);
+					LinearVelocity = (Transform.x * (WalkSpeed + GetBonus(UpgradeTypeEnum.Speed) / 10));
 				}
 			}
 			else
@@ -156,6 +164,8 @@ public class Beelancer : RigidBody2D
 			_activeDeposits = new List<PollenDeposit>();
 			SetState(PlayerStateEnum.Takeoff);
 			Game.SetLandedFlower(null);
+
+			_pollenWeight = UpdatePollenWeight();
 		}
 	}
 
@@ -168,7 +178,7 @@ public class Beelancer : RigidBody2D
 	
 	//Signalled
 	private void OnPollenCollectorTimerTimeout()
-	{
+	{	
 		if (!_currentState.CanGatherPollen) return;
 		
 		bool signalCollectionUpdate = false;
@@ -179,8 +189,9 @@ public class Beelancer : RigidBody2D
 			if (IsInstanceValid(activeDeposit))
 			{
 				activeDeposit.Harvest();
-				_collected[activeDeposit.ResourceType] += activeDeposit.CollectionRate;
+				_collected[activeDeposit.ResourceType] += activeDeposit.CollectionRate + GetBonus(UpgradeTypeEnum.Gather);
 				signalCollectionUpdate = true;
+				
 			}
 			else
 			{
@@ -215,7 +226,42 @@ public class Beelancer : RigidBody2D
 		_collected[resource] += value;
 		ResourceCounters.UpdatePlayerCollection(_collected);
 	}
-	
+
+	public float UpdatePollenWeight()
+	{
+		return _collected[ResourceTypeEnum.RedPollen]
+			+ _collected[ResourceTypeEnum.BluePollen]
+			+ _collected[ResourceTypeEnum.GreenPollen];
+	}
+
+	public float GetBonus(UpgradeTypeEnum upgrade)
+	{
+		var level = Game.CurrentLevels[upgrade];
+		
+		switch (upgrade)
+		{
+			case UpgradeTypeEnum.Carry:
+				
+				break;
+			case UpgradeTypeEnum.Accelerate:
+				return level * AccelerationBonusPerUpgrade;
+			case UpgradeTypeEnum.Sneak:
+				break;
+			case UpgradeTypeEnum.Trade:
+				break;
+			case UpgradeTypeEnum.Speed:
+				return level * MaxVelocityBonusPerUpgrade;
+			case UpgradeTypeEnum.Gather:
+				return level * MaxGatherBonusPerUpgrade; 
+			default:
+				throw new ArgumentOutOfRangeException(nameof(upgrade), upgrade, null);
+					
+		}
+		
+		return 0f;
+		
+	}
+
 	/* SIGNALLED */
 
 	//Signalled

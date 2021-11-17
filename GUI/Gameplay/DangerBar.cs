@@ -16,7 +16,7 @@ public class DangerBar : TextureProgress
 	private Timer _activeTimer;
 	private Timer _hiddenTimer;
  
-	private double _currentValue = 47;
+	private double _currentValue = 0;
 	private float _timerIncrementAmount;
 	private float _timerDecrementAmount;
 

@@ -63,7 +63,8 @@ public class Hive
         "Villa",
         "Road",
         "Post",
-        "Market"
+        "Market",
+        "Land"
     };
 
     public Hive()
@@ -92,8 +93,8 @@ public class Hive
             (buy, sell) = (sell, buy);
         }
 
-        float buyRate = (float)(100 + Game.Random.Next(-10, 10)) / 100;
-        float sellRate = (float)(100 + Game.Random.Next(-10, 10)) / 100;
+        float buyRate =  ((float)(100 + Game.Random.Next(-10, 10)) / 100) - Beelancer.Current.GetBonus(UpgradeTypeEnum.Trade);
+        float sellRate =  ((float)(100 + Game.Random.Next(-10, 10)) / 100) + Beelancer.Current.GetBonus(UpgradeTypeEnum.Trade);
         
         GD.Print("Buy: " + buyRate);
 

@@ -1,0 +1,465 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://World/WorldTextures/Zig.png" type="Texture" id=1]
+[ext_resource path="res://Beelancer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://World/GameCamera.cs" type="Script" id=3]
+[ext_resource path="res://World/FlowerCollection/FlowerCollection1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://World/FlowerCollection/FlowerCollection3.tscn" type="PackedScene" id=5]
+[ext_resource path="res://World/FlowerCollection/FlowerCollection2.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Enemies/Bird/BeeEatingBird.png" type="Texture" id=7]
+[ext_resource path="res://World/Yard.cs" type="Script" id=8]
+[ext_resource path="res://Enemies/CarpenterBee/CarpenterBee.tscn" type="PackedScene" id=9]
+[ext_resource path="res://World/Decor/Rock3.png" type="Texture" id=10]
+[ext_resource path="res://World/Decor/DecorPlant.tscn" type="PackedScene" id=11]
+[ext_resource path="res://World/Decor/Rock1.png" type="Texture" id=12]
+[ext_resource path="res://World/Decor/Rock2.png" type="Texture" id=13]
+[ext_resource path="res://World/Leaf/Leaf.tscn" type="PackedScene" id=14]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 20, 4000 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 3900, 3900 )
+
+[sub_resource type="RectangleShape2D" id=7]
+
+[sub_resource type="Animation" id=3]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -2000, 0 ), Vector2( 2000, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2000, 0 ), Vector2( -2000, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=5]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:lerp")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=6]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:lerp")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
+[node name="Yard" type="Node2D"]
+script = ExtResource( 8 )
+_carpenterBee = ExtResource( 9 )
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -10
+rotation = 0.523599
+scale = Vector2( 2, 2 )
+transform = Transform2D( 1.73205, 1, -1, 1.73205, 0, 0 )
+follow_viewport_enable = true
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+self_modulate = Color( 1, 1, 1, 0.0980392 )
+margin_left = -4000.0
+margin_top = -4000.0
+margin_right = 4000.0
+margin_bottom = 4000.0
+texture = ExtResource( 1 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bounds" type="Node2D" parent="Background"]
+visible = false
+
+[node name="BoundsNW" type="StaticBody2D" parent="Background/Bounds"]
+position = Vector2( -4000, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Bounds/BoundsNW"]
+shape = SubResource( 1 )
+
+[node name="BoundsSE" type="StaticBody2D" parent="Background/Bounds"]
+position = Vector2( 4000, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Bounds/BoundsSE"]
+shape = SubResource( 1 )
+
+[node name="BoundsSW" type="StaticBody2D" parent="Background/Bounds"]
+position = Vector2( 0, 4000 )
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Bounds/BoundsSW"]
+shape = SubResource( 1 )
+
+[node name="BoundsNE" type="StaticBody2D" parent="Background/Bounds"]
+position = Vector2( 0, -4000 )
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Bounds/BoundsNE"]
+shape = SubResource( 1 )
+
+[node name="Spawn" type="Area2D" parent="Background/Bounds"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Bounds/Spawn"]
+shape = SubResource( 2 )
+
+[node name="Bounds" type="Node2D" parent="."]
+
+[node name="Exit1" type="Area2D" parent="Bounds"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Exit1"]
+shape = SubResource( 7 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 1.5, 1.5 )
+smoothing_enabled = true
+smoothing_speed = 15.0
+editor_draw_limits = true
+script = ExtResource( 3 )
+roundProcessTo = Vector2( 0.5, 0.5 )
+
+[node name="BirdIndicator" type="Sprite" parent="Camera2D"]
+self_modulate = Color( 1, 1, 1, 0.117647 )
+position = Vector2( 2000, 0 )
+texture = ExtResource( 7 )
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/BirdIndicator"]
+anims/LeftToRight = SubResource( 3 )
+anims/RightToLeft = SubResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D"]
+anims/ToLandingZone = SubResource( 5 )
+anims/ToPlayer = SubResource( 6 )
+
+[node name="Hornet" parent="." instance=ExtResource( 9 )]
+position = Vector2( 312.096, -126.529 )
+
+[node name="Beelancer" parent="." instance=ExtResource( 2 )]
+z_index = 10
+mode = 2
+mass = 0.01
+linear_damp = 10.0
+angular_damp = 30.0
+WalkSpeed = 200.0
+RotationSpeed = 15.0
+
+[node name="DebugLabel" type="Label" parent="Beelancer"]
+margin_left = -141.0
+margin_top = -100.0
+margin_right = 142.0
+margin_bottom = 9.0
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Decor" type="Node2D" parent="."]
+
+[node name="DecorPlant3" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( 1032.96, -262.655 )
+
+[node name="DecorPlant4" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( 482.036, -1752.82 )
+
+[node name="Flowers7" parent="Decor" instance=ExtResource( 5 )]
+position = Vector2( 148.709, -2891.43 )
+
+[node name="Flowers8" parent="Decor" instance=ExtResource( 6 )]
+position = Vector2( 8947.97, -2058.49 )
+
+[node name="Flowers9" parent="Decor" instance=ExtResource( 4 )]
+position = Vector2( 2134.95, 4562.32 )
+
+[node name="Flowers10" parent="Decor" instance=ExtResource( 6 )]
+position = Vector2( 3352.33, 3238.16 )
+
+[node name="Flowers11" parent="Decor" instance=ExtResource( 4 )]
+position = Vector2( -5212.01, 4348.74 )
+
+[node name="Flowers12" parent="Decor" instance=ExtResource( 6 )]
+position = Vector2( -4037.35, 5416.61 )
+
+[node name="Flowers13" parent="Decor" instance=ExtResource( 5 )]
+position = Vector2( -406.584, 6463.13 )
+
+[node name="Flowers14" parent="Decor" instance=ExtResource( 6 )]
+position = Vector2( 1579.66, 6420.41 )
+
+[node name="Flowers15" parent="Decor" instance=ExtResource( 4 )]
+position = Vector2( 575.858, 7787.29 )
+
+[node name="Flowers16" parent="Decor" instance=ExtResource( 4 )]
+position = Vector2( 5658.93, 418.974 )
+
+[node name="Flowers17" parent="Decor" instance=ExtResource( 6 )]
+position = Vector2( 6983.09, 1102.41 )
+
+[node name="Flowers18" parent="Decor" instance=ExtResource( 5 )]
+position = Vector2( 5103.63, -4749.53 )
+
+[node name="Flowers19" parent="Decor" instance=ExtResource( 4 )]
+position = Vector2( -7433.18, 4241.95 )
+
+[node name="Flowers20" parent="Decor" instance=ExtResource( 6 )]
+position = Vector2( -7433.18, 3131.37 )
+
+[node name="Flowers21" parent="Decor" instance=ExtResource( 5 )]
+position = Vector2( -8949.56, 1123.77 )
+
+[node name="Flowers22" parent="Decor" instance=ExtResource( 4 )]
+position = Vector2( -5169.29, 589.831 )
+
+[node name="Flowers23" parent="Decor" instance=ExtResource( 6 )]
+position = Vector2( 3715.4, 333.542 )
+
+[node name="Flowers24" parent="Decor" instance=ExtResource( 6 )]
+position = Vector2( -5019.79, -2741.93 )
+
+[node name="Flowers25" parent="Decor" instance=ExtResource( 4 )]
+position = Vector2( 2266.07, 9004.09 )
+
+[node name="DecorPlant5" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( -2581.36, -1914.55 )
+
+[node name="DecorPlant6" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( 1842.49, 1358.15 )
+
+[node name="DecorPlant7" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( 2603.58, -2000.17 )
+
+[node name="DecorPlant8" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( 719.877, 2690.06 )
+
+[node name="DecorPlant9" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( -1125.77, 4079.05 )
+
+[node name="DecorPlant10" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( -3588.84, 1636.35 )
+
+[node name="DecorPlant11" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( -3823.77, -606.184 )
+
+[node name="DecorPlant12" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( -3652.91, -3809.8 )
+
+[node name="DecorPlant13" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( 2284.45, 3579.87 )
+
+[node name="DecorPlant14" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( 3074.68, 4839.96 )
+
+[node name="DecorPlant15" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( 4420.2, 3558.52 )
+
+[node name="DecorPlant16" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( 3736.76, 2255.71 )
+
+[node name="DecorPlant17" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( -2542.33, -4920.39 )
+
+[node name="DecorPlant18" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( -4165.49, -6223.19 )
+
+[node name="DecorPlant19" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( 2049.52, -7291.06 )
+
+[node name="DecorPlant20" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( 2369.88, -5796.04 )
+
+[node name="DecorPlant21" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( 3565.9, -6586.27 )
+
+[node name="DecorPlant22" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( -2606.4, 6847.56 )
+
+[node name="DecorPlant23" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( -7091.46, 1935.35 )
+
+[node name="DecorPlant24" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( 9909.06, -2656.5 )
+
+[node name="DecorPlant2" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( -2378.83, 382.974 )
+
+[node name="Flowers5" parent="Decor" instance=ExtResource( 4 )]
+position = Vector2( -2435.55, -745.375 )
+
+[node name="Flowers6" parent="Decor" instance=ExtResource( 4 )]
+position = Vector2( -2620.46, 2859.7 )
+
+[node name="DecorPlant" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( -566.593, 1983.79 )
+
+[node name="Flowers" parent="Decor" instance=ExtResource( 4 )]
+position = Vector2( -1354.34, 579.792 )
+
+[node name="Flowers2" parent="Decor" instance=ExtResource( 6 )]
+position = Vector2( 1945.66, -676.208 )
+
+[node name="Flowers3" parent="Decor" instance=ExtResource( 5 )]
+position = Vector2( 765.66, 519.792 )
+
+[node name="Flowers4" parent="Decor" instance=ExtResource( 5 )]
+position = Vector2( -426.34, -940.208 )
+
+[node name="DecorPlant25" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( 8862.54, -3254.51 )
+
+[node name="DecorPlant26" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( 8285.89, -2101.2 )
+
+[node name="Rock3" type="Sprite" parent="Decor"]
+position = Vector2( 3224.18, 376.259 )
+texture = ExtResource( 10 )
+
+[node name="Rock1" type="Sprite" parent="Decor"]
+position = Vector2( -5105.22, 2362.5 )
+texture = ExtResource( 12 )
+
+[node name="Rock2" type="Sprite" parent="Decor"]
+position = Vector2( -3097.62, -2848.71 )
+texture = ExtResource( 13 )
+
+[node name="Rock4" type="Sprite" parent="Decor"]
+position = Vector2( 6171.51, -1738.13 )
+texture = ExtResource( 13 )
+
+[node name="Rock5" type="Sprite" parent="Decor"]
+position = Vector2( -4592.64, 4946.75 )
+texture = ExtResource( 12 )
+
+[node name="Rock6" type="Sprite" parent="Decor"]
+position = Vector2( -278.439, -5539.75 )
+texture = ExtResource( 13 )
+
+[node name="Rock7" type="Sprite" parent="Decor"]
+position = Vector2( 3736.76, -2827.36 )
+texture = ExtResource( 10 )
+
+[node name="Rock8" type="Sprite" parent="Decor"]
+position = Vector2( 276.854, 7317.43 )
+texture = ExtResource( 12 )
+
+[node name="Rock9" type="Sprite" parent="Decor"]
+position = Vector2( -4314.99, 5224.4 )
+texture = ExtResource( 13 )
+
+[node name="Rock10" type="Sprite" parent="Decor"]
+position = Vector2( -4827.57, 2106.21 )
+texture = ExtResource( 10 )
+
+[node name="Rock11" type="Sprite" parent="Decor"]
+position = Vector2( -5916.8, -2229.35 )
+texture = ExtResource( 10 )
+
+[node name="DecorPlant29" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( -2371.47, -6757.12 )
+
+[node name="DecorPlant30" parent="Decor" instance=ExtResource( 11 )]
+position = Vector2( -2414.18, -8700.65 )
+
+[node name="DecorPlant27" parent="Decor" instance=ExtResource( 11 )]
+
+[node name="DecorPlant28" parent="Decor" instance=ExtResource( 11 )]
+
+[node name="Flowers26" parent="Decor" instance=ExtResource( 4 )]
+position = Vector2( -107.58, 3686.66 )
+
+[node name="Flowers28" parent="Decor" instance=ExtResource( 5 )]
+position = Vector2( 2690.24, -6799.84 )
+
+[node name="Flowers29" parent="Decor" instance=ExtResource( 6 )]
+position = Vector2( 7837.39, -3083.65 )
+
+[node name="Flowers30" parent="Decor" instance=ExtResource( 5 )]
+position = Vector2( -6749.74, 1251.91 )
+
+[node name="Flowers31" parent="Decor" instance=ExtResource( 6 )]
+position = Vector2( -6856.53, -1204.19 )
+
+[node name="Flowers32" parent="Decor" instance=ExtResource( 4 )]
+position = Vector2( 4484.27, 2682.86 )
+
+[node name="Flowers33" parent="Decor" instance=ExtResource( 4 )]
+position = Vector2( 4099.83, -2186.63 )
+
+[node name="Flowers34" parent="Decor" instance=ExtResource( 6 )]
+position = Vector2( -1453.1, -6329.98 )
+
+[node name="Flowers35" parent="Decor" instance=ExtResource( 5 )]
+position = Vector2( -4464.5, -5005.81 )
+
+[node name="Flowers36" parent="Decor" instance=ExtResource( 6 )]
+position = Vector2( -2948.12, -7632.78 )
+
+[node name="Flowers37" parent="Decor" instance=ExtResource( 4 )]
+position = Vector2( 2263.1, -4066.09 )
+
+[node name="Flowers38" parent="Decor" instance=ExtResource( 6 )]
+position = Vector2( 1344.73, -3638.94 )
+
+[node name="Flowers27" parent="Decor" instance=ExtResource( 6 )]
+position = Vector2( -2670.47, -4215.59 )
+
+[node name="Leaf" parent="Decor" instance=ExtResource( 14 )]
