@@ -5,15 +5,25 @@ using System.Data;
 
 public class Beelancer : RigidBody2D
 {
-	[Export] public float AccelerationForce = 100f;
-	[Export] public float MaxVelocity = 150f;
-	[Export] public float WalkSpeed = 50f;
-	[Export] public float RotationSpeed = 100f;
+	[Export] public float AccelerationForce = 2f;
+	[Export] public float MaxVelocity = 10f;
+	[Export] public float WalkSpeed = 200f;
+	[Export] public float RotationSpeed = 15f;
+
+	[Export] public float PollenWeightRotationSlowdown = .1f; //Per full unit over.
+	[Export] public float PollenWeightRotationMaxSlowdown = 5f;
+	[Export] public float PollenWeightAccelerationForceSlowdown = .015f; //Per full unit over.
+	[Export] public float PollenWeightAccelerationMaxSlowdown = 1f;
+	
+	[Export] public float BasePollenCapacity = 50f;
+	
 
 	[Export] public float AccelerationBonusPerUpgrade = 1f;
 	[Export] public float MaxVelocityBonusPerUpgrade = 5f;
 	[Export] public float WalkSpeedBonusPerUpgrade = 4f;
 	[Export] public float MaxGatherBonusPerUpgrade = .01f;
+	[Export] public float FreePollenUnitsPerUpgrade = 5f;
+	
 
 
 	public static Beelancer Current { get; private set; }
@@ -109,7 +119,7 @@ public class Beelancer : RigidBody2D
 			if (move.x != 0 && _currentState.CanRotate)
 			{
 				//Rotation
-				state.AngularVelocity = move.x * RotationSpeed;
+				state.AngularVelocity = move.x * GetWeightedRotation();
 			}
 
 			if (move.y > 0)
@@ -118,7 +128,7 @@ public class Beelancer : RigidBody2D
 				{
 					//Apply actual force
 					var acceleration = AccelerationForce + GetBonus(UpgradeTypeEnum.Accelerate);
-					ApplyCentralImpulse(Transform.x * acceleration);
+					ApplyCentralImpulse(Transform.x * GetWeightedAcceleration());
 					
 					float vX = AppliedForce.x;
 					float vY = AppliedForce.y;
@@ -229,9 +239,20 @@ public class Beelancer : RigidBody2D
 
 	public float UpdatePollenWeight()
 	{
-		return _collected[ResourceTypeEnum.RedPollen]
-			+ _collected[ResourceTypeEnum.BluePollen]
-			+ _collected[ResourceTypeEnum.GreenPollen];
+		var pollen = _collected[ResourceTypeEnum.RedPollen]
+					 + _collected[ResourceTypeEnum.BluePollen]
+					 + _collected[ResourceTypeEnum.GreenPollen];
+		return Math.Max(0, pollen - Game.CurrentLevels[UpgradeTypeEnum.Carry] * FreePollenUnitsPerUpgrade);
+	}
+
+	private float GetWeightedRotation()
+	{
+		return RotationSpeed - Math.Min(PollenWeightRotationMaxSlowdown, (float)(Math.Floor(_pollenWeight) * PollenWeightRotationSlowdown));
+	}
+
+	private float GetWeightedAcceleration()
+	{
+		return AccelerationForce - Math.Min(PollenWeightAccelerationMaxSlowdown, (float)(Math.Floor(_pollenWeight) * PollenWeightAccelerationForceSlowdown));
 	}
 
 	public float GetBonus(UpgradeTypeEnum upgrade)

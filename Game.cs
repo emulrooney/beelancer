@@ -16,7 +16,6 @@ public class Game : Node
 	public static Yard CurrentYard { get; private set; }
 	public static Dictionary<UpgradeTypeEnum, int> CurrentLevels;
 	
-
 	private static MainMenu _mainMenu;
 	private GameStateEnum _stateEnum = GameStateEnum.MainMenu;
 
