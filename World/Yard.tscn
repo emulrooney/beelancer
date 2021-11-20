@@ -14,6 +14,7 @@
 [ext_resource path="res://World/Decor/Rock1.png" type="Texture" id=12]
 [ext_resource path="res://World/Decor/Rock2.png" type="Texture" id=13]
 [ext_resource path="res://World/Leaf/Leaf.tscn" type="PackedScene" id=14]
+[ext_resource path="res://World/Hive/Hive.tscn" type="PackedScene" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 20, 4000 )
@@ -21,9 +22,7 @@ extents = Vector2( 20, 4000 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 3900, 3900 )
 
-[sub_resource type="RectangleShape2D" id=7]
-
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
@@ -49,7 +48,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
@@ -76,7 +75,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:lerp")
 tracks/0/interp = 1
@@ -90,7 +89,7 @@ tracks/0/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:lerp")
 tracks/0/interp = 1
@@ -107,6 +106,7 @@ tracks/0/keys = {
 [node name="Yard" type="Node2D"]
 script = ExtResource( 8 )
 _carpenterBee = ExtResource( 9 )
+_levelExit = ExtResource( 15 )
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -10
@@ -127,47 +127,50 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Bounds" type="Node2D" parent="Background"]
-visible = false
+[node name="Bounds" type="Node2D" parent="."]
+rotation = 0.523599
+scale = Vector2( 2, 2 )
 
-[node name="BoundsNW" type="StaticBody2D" parent="Background/Bounds"]
+[node name="BoundsNW" type="StaticBody2D" parent="Bounds"]
 position = Vector2( -4000, 0 )
+z_index = 1000
+collision_layer = 513
+collision_mask = 513
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Bounds/BoundsNW"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/BoundsNW"]
 shape = SubResource( 1 )
 
-[node name="BoundsSE" type="StaticBody2D" parent="Background/Bounds"]
+[node name="BoundsSE" type="StaticBody2D" parent="Bounds"]
 position = Vector2( 4000, 0 )
+collision_layer = 513
+collision_mask = 513
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Bounds/BoundsSE"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/BoundsSE"]
 shape = SubResource( 1 )
 
-[node name="BoundsSW" type="StaticBody2D" parent="Background/Bounds"]
+[node name="BoundsSW" type="StaticBody2D" parent="Bounds"]
 position = Vector2( 0, 4000 )
 rotation = 1.5708
+collision_layer = 513
+collision_mask = 513
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Bounds/BoundsSW"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/BoundsSW"]
 shape = SubResource( 1 )
 
-[node name="BoundsNE" type="StaticBody2D" parent="Background/Bounds"]
+[node name="BoundsNE" type="StaticBody2D" parent="Bounds"]
 position = Vector2( 0, -4000 )
 rotation = 1.5708
+collision_layer = 513
+collision_mask = 513
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Bounds/BoundsNE"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/BoundsNE"]
 shape = SubResource( 1 )
 
-[node name="Spawn" type="Area2D" parent="Background/Bounds"]
+[node name="Spawn" type="Area2D" parent="Bounds"]
 visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Bounds/Spawn"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Spawn"]
 shape = SubResource( 2 )
-
-[node name="Bounds" type="Node2D" parent="."]
-
-[node name="Exit1" type="Area2D" parent="Bounds"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Exit1"]
-shape = SubResource( 7 )
 
 [node name="Decor" type="Node2D" parent="."]
 
@@ -421,7 +424,7 @@ position = Vector2( -2670.47, -4215.59 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 1.5, 1.5 )
+zoom = Vector2( 1.75, 1.75 )
 smoothing_enabled = true
 smoothing_speed = 15.0
 editor_draw_limits = true
@@ -435,12 +438,12 @@ texture = ExtResource( 7 )
 flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/BirdIndicator"]
-anims/LeftToRight = SubResource( 3 )
-anims/RightToLeft = SubResource( 4 )
+anims/LeftToRight = SubResource( 4 )
+anims/RightToLeft = SubResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D"]
-anims/ToLandingZone = SubResource( 5 )
-anims/ToPlayer = SubResource( 6 )
+anims/ToLandingZone = SubResource( 6 )
+anims/ToPlayer = SubResource( 7 )
 
 [node name="Hornet" parent="." instance=ExtResource( 9 )]
 position = Vector2( 312.096, -126.529 )
@@ -463,3 +466,29 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="SpawnPoints" type="Node" parent="."]
+
+[node name="Position2D" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 4000, -1000 )
+
+[node name="Position2D2" type="Position2D" parent="SpawnPoints"]
+position = Vector2( -335.56, -7663.52 )
+
+[node name="Position2D3" type="Position2D" parent="SpawnPoints"]
+position = Vector2( -442.347, -4331.76 )
+
+[node name="Position2D4" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 6434.75, -3691.04 )
+
+[node name="Position2D5" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 2312.76, 2481.26 )
+
+[node name="Position2D6" type="Position2D" parent="SpawnPoints"]
+position = Vector2( -2727.59, 4510.22 )
+
+[node name="Position2D7" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 6.16016, 5279.09 )
+
+[node name="Position2D8" type="Position2D" parent="SpawnPoints"]
+position = Vector2( -4986.55, -1042.62 )

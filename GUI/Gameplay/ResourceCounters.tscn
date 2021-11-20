@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://GUI/Gameplay/ResourceCounters.cs" type="Script" id=1]
 [ext_resource path="res://GUI/Assets/GUI_Flower.png" type="Texture" id=2]
 [ext_resource path="res://GUI/Theme/BeeTheme.tres" type="Theme" id=3]
+[ext_resource path="res://GUI/Assets/Weight.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 0, 0, 0.66 )
+corner_detail = 1
 
 [node name="ResourceCounters" type="Panel"]
 anchor_left = 0.9
@@ -130,6 +135,34 @@ rect_min_size = Vector2( 80, 0 )
 text = "0.00$"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 0, 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Weight" type="ProgressBar" parent="Control"]
+anchor_right = 0.66
+margin_left = 2.0
+margin_top = 4.0
+custom_styles/fg = SubResource( 1 )
+step = 1.0
+
+[node name="Icon" type="TextureRect" parent="Control"]
+anchor_left = 1.0
+anchor_right = 1.33
+margin_left = -23.58
+margin_top = 2.0
+margin_right = -29.58
+margin_bottom = 22.0
+texture = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

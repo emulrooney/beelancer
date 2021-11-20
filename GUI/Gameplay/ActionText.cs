@@ -14,9 +14,12 @@ public class ActionText : Label
 	private static Dictionary<ActionTextEnum, string> _text;
 	private static Dictionary<ActionTextEnum, Color> _textColors;
 
+	private static Label _overburdened;
+
 	public override void _Ready()
 	{
 		Current = this;
+		_overburdened = GetNode<Label>("Overburdened");
 		
 		_text = new Dictionary<ActionTextEnum, string>
 		{
@@ -44,6 +47,11 @@ public class ActionText : Label
 		Current.Text = _text[textEnum];
 		Current.SelfModulate = _textColors[textEnum];
 		Current.Visible = true;
+	}
+
+	public static void ShowOverburdenedText(bool burdened)
+	{
+		_overburdened.Visible = burdened;
 	}
 
 	public static void DismissText()

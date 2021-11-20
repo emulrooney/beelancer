@@ -8,7 +8,7 @@ public abstract  class BeeState
     public bool CanBeHitFromGround { get; protected set; }
     public bool CanGatherPollen { get; protected set; }
     public bool CanRotate { get; protected set; }
-
+    public bool CanAccelerate { get; protected set; }
     public bool CanTakeoff { get; protected set; }
     public bool CanLand { get; protected set; }
     public bool UseFlyingMovement { get; protected set; }

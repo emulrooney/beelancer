@@ -19,3 +19,12 @@ NormalColor = Color( 1, 1, 1, 1 )
 MovementColor = Color( 0, 0.717647, 1, 1 )
 ProblemColor = Color( 1, 0.890196, 0, 1 )
 DangerColor = Color( 1, 0.305882, 0, 1 )
+
+[node name="Overburdened" type="Label" parent="."]
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 1 )
+text = "Overburdened - more pollen will slow you down significantly!!!"
+align = 1

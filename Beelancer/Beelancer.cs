@@ -15,7 +15,7 @@ public class Beelancer : RigidBody2D
 	[Export] public float PollenWeightAccelerationForceSlowdown = .015f; //Per full unit over.
 	[Export] public float PollenWeightAccelerationMaxSlowdown = 1f;
 	
-	[Export] public float BasePollenCapacity = 50f;
+	[Export] public float BasePollenCapacity = 45f;
 	
 
 	[Export] public float AccelerationBonusPerUpgrade = 1f;
@@ -70,7 +70,7 @@ public class Beelancer : RigidBody2D
 		};
 		
 		SetupStates();
-		SetState(PlayerStateEnum.Takeoff);
+		SetState(PlayerStateEnum.Flying);
 		_animator.CurrentAnimation = _currentState.AnimationName;
 
 		Levels = new Dictionary<UpgradeTypeEnum, int>();
@@ -114,6 +114,12 @@ public class Beelancer : RigidBody2D
 	 */
 	public override void _IntegrateForces(Physics2DDirectBodyState state)
 	{
+		if (_currentState.GetType() == typeof(TakeoffState))
+		{
+			ApplyCentralImpulse(Transform.x * GetWeightedAcceleration() * 1.1f);
+			return;
+		}
+		
 		if (move != Vector2.Zero)
 		{
 			if (move.x != 0 && _currentState.CanRotate)
@@ -124,17 +130,14 @@ public class Beelancer : RigidBody2D
 
 			if (move.y > 0)
 			{
-				if (_currentState.UseFlyingMovement)
+				if (_currentState.UseFlyingMovement && _currentState.CanAccelerate)
 				{
 					//Apply actual force
-					var acceleration = AccelerationForce + GetBonus(UpgradeTypeEnum.Accelerate);
 					ApplyCentralImpulse(Transform.x * GetWeightedAcceleration());
 					
 					float vX = AppliedForce.x;
 					float vY = AppliedForce.y;
-
-					//reference:
-					//https://www.reddit.com/r/godot/comments/mavqsv/how_do_i_set_speed_limit_for_rigidbody2d/
+					
 					if (Math.Abs(vX) > MaxVelocity || Math.Abs(vY) > MaxVelocity)
 					{
 						var terminalVelocity = AppliedForce.Normalized();
@@ -175,7 +178,7 @@ public class Beelancer : RigidBody2D
 			SetState(PlayerStateEnum.Takeoff);
 			Game.SetLandedFlower(null);
 
-			_pollenWeight = UpdatePollenWeight();
+			_pollenWeight = Math.Max(0, GetPollenWeight() - GetFreeCarryLimit());
 		}
 	}
 
@@ -211,7 +214,7 @@ public class Beelancer : RigidBody2D
 
 		if (signalCollectionUpdate)
 		{
-			ResourceCounters.UpdatePlayerCollection(_collected);
+			ResourceCounters.UpdatePlayerCollection(_collected, GetPollenWeight(), GetFreeCarryLimit());
 		}
 	}
 
@@ -234,15 +237,20 @@ public class Beelancer : RigidBody2D
 	public void ModifyResourceQuantity(ResourceTypeEnum resource, float value)
 	{
 		_collected[resource] += value;
-		ResourceCounters.UpdatePlayerCollection(_collected);
+		ResourceCounters.UpdatePlayerCollection(_collected, GetPollenWeight(), GetFreeCarryLimit());
 	}
 
-	public float UpdatePollenWeight()
+	public float GetPollenWeight()
 	{
 		var pollen = _collected[ResourceTypeEnum.RedPollen]
 					 + _collected[ResourceTypeEnum.BluePollen]
 					 + _collected[ResourceTypeEnum.GreenPollen];
-		return Math.Max(0, pollen - Game.CurrentLevels[UpgradeTypeEnum.Carry] * FreePollenUnitsPerUpgrade);
+		return pollen;
+	}
+
+	public float GetFreeCarryLimit()
+	{
+		return Game.CurrentLevels[UpgradeTypeEnum.Carry] * FreePollenUnitsPerUpgrade;
 	}
 
 	private float GetWeightedRotation()
@@ -252,7 +260,8 @@ public class Beelancer : RigidBody2D
 
 	private float GetWeightedAcceleration()
 	{
-		return AccelerationForce - Math.Min(PollenWeightAccelerationMaxSlowdown, (float)(Math.Floor(_pollenWeight) * PollenWeightAccelerationForceSlowdown));
+		return AccelerationForce - Math.Min(PollenWeightAccelerationMaxSlowdown,
+			(float) (Math.Floor(_pollenWeight) * PollenWeightAccelerationForceSlowdown));
 	}
 
 	public float GetBonus(UpgradeTypeEnum upgrade)

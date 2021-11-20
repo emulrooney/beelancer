@@ -5,7 +5,7 @@ public class Leaf : Area2D
 	[Export] private float _coverTransparency = .5f;
 	private Color _initialColor;
 	private Color _transparentColor;
-	
+
 	public override void _Ready()
 	{
 		_initialColor = Modulate;
@@ -35,6 +35,20 @@ public class Leaf : Area2D
 			Beelancer.Current.InCover = false;
 			
 			DangerBar.SetActiveDanger(true);
+		}
+	}
+
+	public void Cull()
+	{
+		var areas = GetOverlappingAreas();
+		GD.Print(this + " cull check");
+		foreach (var area in areas)
+		{
+			if (area is Flower flower)
+			{
+				GD.Print("Culled");
+				QueueFree();
+			}
 		}
 	}
 }
