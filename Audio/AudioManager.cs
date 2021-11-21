@@ -15,46 +15,48 @@ public class AudioManager : Node
 	private static AudioStreamPlayer _guiPositiveSound;
 	private static AudioStreamPlayer _guiNegativeSound;
 
+	private static Dictionary<SoundEffectEnum, AudioStreamPlayer> _sounds;
+
 
 	public override void _Ready()
 	{
 		_musicPlayer = GetNode<AudioStreamPlayer>("MusicPlayer");
-
-		_guiPositiveSound = GetNode<AudioStreamPlayer>("SFX/GUI_Positive");
-		_guiNegativeSound = GetNode<AudioStreamPlayer>("SFX/GUI_Negative");
-
 		_music = new Dictionary<MusicTrackEnum, AudioStream>();
 		_music.Add(MusicTrackEnum.Menu, _menuMusic);
 		_music.Add(MusicTrackEnum.Exploration, _exploreMusic);
 		
 		//start menu music since we're there when _ready is called anyway
 		PlayTrack(MusicTrackEnum.Menu);
+		
+		_sounds = new Dictionary<SoundEffectEnum, AudioStreamPlayer>();
+		_sounds.Add(SoundEffectEnum.GUI_Positive, GetNode<AudioStreamPlayer>("SFX/GUI_Positive"));
+		_sounds.Add(SoundEffectEnum.GUI_Negative, GetNode<AudioStreamPlayer>("SFX/GUI_Negative"));
 	}
 	
 	public static void PlayTrack(MusicTrackEnum musicTrack)
 	{
-		GD.Print("Playing:" + musicTrack);
-		_musicPlayer.Stop();
-		_musicPlayer.Stream = _music[musicTrack];
-		_musicPlayer.Play();
+		if (_music.ContainsKey(musicTrack))
+		{
+			_musicPlayer.Stop();
+			_musicPlayer.Stream = _music[musicTrack];
+			_musicPlayer.Play();
+		}
+		else
+		{
+			GD.PrintErr($"AudioManager is missing music track ({musicTrack})");
+		}
 	}
 
 	public static void PlaySFX(SoundEffectEnum soundEffect)
 	{
-		switch (soundEffect)
+		if (_sounds.ContainsKey(soundEffect))
 		{
-			case SoundEffectEnum.GUI_Positive:
-				_guiPositiveSound.Play();
-				break;
-			case SoundEffectEnum.GUI_Negative:
-				_guiNegativeSound.Play();
-				break;
-			default:
-				throw new ArgumentOutOfRangeException(nameof(soundEffect), soundEffect, null);
+			_sounds[soundEffect].Play();
 		}
-		
-		
-		
+		else
+		{
+			GD.PrintErr($"AudioManager is missing sound effect ({soundEffect})");
+		}
 		
 	}
 
