@@ -15,33 +15,39 @@ public class MainMenu : Control
 	private void OnCreditsDismissPressed()
 	{
 		_credits.Visible = false;
+		AudioManager.PlaySFX(SoundEffectEnum.GUI_Negative);
 	}
 	
 	private void OnCreditsButtonPressed()
 	{
 		_credits.Visible = true;
+		AudioManager.PlaySFX(SoundEffectEnum.GUI_Positive);
 	}
 	
 	private void OnSettingsButtonPressed()
 	{
 		_options.Visible = true;
+		AudioManager.PlaySFX(SoundEffectEnum.GUI_Positive);
 	}
 	
 	private void OnStartGameButtonPressed()
 	{
 		Game.NewGame();
+		AudioManager.PlaySFX(SoundEffectEnum.GUI_Positive);
 		
 	}
 	
 	private void OnSaveOptionsPressed()
 	{
 		//Todo: Set options
-		
 		_options.Visible = false;
+		AudioManager.PlaySFX(SoundEffectEnum.GUI_Positive);
 	}
 	
 	private void OnCancelOptionsPressed()
 	{
 		_options.Visible = false;
+		AudioManager.PlaySFX(SoundEffectEnum.GUI_Negative);
+
 	}
 }

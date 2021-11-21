@@ -7,6 +7,7 @@ public class GameOverScreen : CenterContainer
 	{
 		Game.NewGame();
 		Visible = false;
+		AudioManager.PlaySFX(SoundEffectEnum.GUI_Positive);
 	}
 
 
@@ -14,5 +15,7 @@ public class GameOverScreen : CenterContainer
 	{
 		Game.ShowMainMenu();
 		Visible = false;
+		AudioManager.PlaySFX(SoundEffectEnum.GUI_Negative);
+		AudioManager.PlayTrack(MusicTrackEnum.Menu);
 	}	
 }

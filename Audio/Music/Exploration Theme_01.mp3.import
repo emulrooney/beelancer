@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Exploration Theme_01.mp3-2f260b145a610f12e1e298fd0a713a4c.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Exploration Theme_01.mp3"
+dest_files=[ "res://.import/Exploration Theme_01.mp3-2f260b145a610f12e1e298fd0a713a4c.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

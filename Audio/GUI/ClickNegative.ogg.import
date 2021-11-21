@@ -11,5 +11,5 @@ dest_files=[ "res://.import/ClickNegative.ogg-1b7e1d55d311bfe7b9534ff0208fa0ca.o
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

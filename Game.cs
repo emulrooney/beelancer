@@ -73,6 +73,8 @@ public class Game : Node
 		{
 			CurrentLevels.Add(upgrade, 1);
 		}
+		
+		AudioManager.PlayTrack(MusicTrackEnum.Exploration);
 	}
 
 	public static void ShowMainMenu()
