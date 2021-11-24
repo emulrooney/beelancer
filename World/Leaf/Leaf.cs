@@ -41,12 +41,10 @@ public class Leaf : Area2D
 	public void Cull()
 	{
 		var areas = GetOverlappingAreas();
-		GD.Print(this + " cull check");
 		foreach (var area in areas)
 		{
 			if (area is Flower flower)
 			{
-				GD.Print("Culled");
 				QueueFree();
 			}
 		}

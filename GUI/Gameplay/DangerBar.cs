@@ -80,8 +80,6 @@ public class DangerBar : TextureProgress
 		{
 			if (!_birdAppearances[i] && _currentValue > _birdIndicatorTimes[i])
 			{
-				GD.Print("Bird Time at " + _currentValue);
-				GD.Print("vs " + _birdIndicatorTimes[i]);
 				_birdAppearances[i] = true;
 
 				GameCamera.BirdTime();

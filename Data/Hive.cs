@@ -96,8 +96,6 @@ public class Hive
 		float buyRate =  ((float)(100 + Game.Random.Next(-10, 10)) / 100) - Beelancer.Current.GetBonus(UpgradeTypeEnum.Trade);
 		float sellRate =  ((float)(100 + Game.Random.Next(-10, 10)) / 100) + Beelancer.Current.GetBonus(UpgradeTypeEnum.Trade);
 		
-		GD.Print("Buy: " + buyRate);
-
 		Buying = new KeyValuePair<ResourceTypeEnum, float>(buy.Value, buyRate);
 		Selling = new KeyValuePair<ResourceTypeEnum, float>(sell.Value, sellRate);
 		HiveName = _hiveNamePrefixes[Game.Random.Next(0, _hiveNamePrefixes.Length - 1)]
