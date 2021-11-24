@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://World/WorldTextures/Zig.png" type="Texture" id=1]
 [ext_resource path="res://Beelancer.tscn" type="PackedScene" id=2]
@@ -19,10 +19,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 20, 4000 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 3900, 3900 )
-
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
@@ -48,7 +45,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
@@ -75,7 +72,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:lerp")
 tracks/0/interp = 1
@@ -89,7 +86,7 @@ tracks/0/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:lerp")
 tracks/0/interp = 1
@@ -165,12 +162,6 @@ collision_mask = 513
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/BoundsNE"]
 shape = SubResource( 1 )
-
-[node name="Spawn" type="Area2D" parent="Bounds"]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Spawn"]
-shape = SubResource( 2 )
 
 [node name="Decor" type="Node2D" parent="."]
 
@@ -438,12 +429,12 @@ texture = ExtResource( 7 )
 flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/BirdIndicator"]
-anims/LeftToRight = SubResource( 4 )
-anims/RightToLeft = SubResource( 5 )
+anims/LeftToRight = SubResource( 2 )
+anims/RightToLeft = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D"]
-anims/ToLandingZone = SubResource( 6 )
-anims/ToPlayer = SubResource( 7 )
+anims/ToLandingZone = SubResource( 4 )
+anims/ToPlayer = SubResource( 5 )
 
 [node name="Hornet" parent="." instance=ExtResource( 9 )]
 position = Vector2( 312.096, -126.529 )
@@ -492,3 +483,7 @@ position = Vector2( 6.16016, 5279.09 )
 
 [node name="Position2D8" type="Position2D" parent="SpawnPoints"]
 position = Vector2( -4986.55, -1042.62 )
+
+[node name="CarpenterBeeSpawn" type="Timer" parent="."]
+
+[connection signal="timeout" from="CarpenterBeeSpawn" to="." method="OnCarpenterBeeSpawnTimeout"]

@@ -16,8 +16,7 @@ public class Beelancer : RigidBody2D
 	[Export] public float PollenWeightAccelerationMaxSlowdown = 1f;
 	
 	[Export] public float BasePollenCapacity = 45f;
-	
-
+	 
 	[Export] public float AccelerationBonusPerUpgrade = 1f;
 	[Export] public float MaxVelocityBonusPerUpgrade = 5f;
 	[Export] public float WalkSpeedBonusPerUpgrade = 4f;

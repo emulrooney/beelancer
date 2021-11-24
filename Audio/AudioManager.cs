@@ -7,16 +7,19 @@ public class AudioManager : Node
 	[Export] private AudioStream _menuMusic;
 	[Export] private AudioStream _exploreMusic;
 
+	[Export] private float _sfxDb = 1f;
+	[Export] private float _musicDb = .7f;
+
 	//Music
 	private static AudioStreamPlayer _musicPlayer;
 	private static Dictionary<MusicTrackEnum, AudioStream> _music;
 	
-	//SFX
-	private static AudioStreamPlayer _guiPositiveSound;
-	private static AudioStreamPlayer _guiNegativeSound;
 
 	private static Dictionary<SoundEffectEnum, AudioStreamPlayer> _sounds;
 
+	private static bool _soundOn = true;
+	private static bool _musicOn = true;
+	
 
 	public override void _Ready()
 	{
@@ -31,15 +34,19 @@ public class AudioManager : Node
 		_sounds = new Dictionary<SoundEffectEnum, AudioStreamPlayer>();
 		_sounds.Add(SoundEffectEnum.GUI_Positive, GetNode<AudioStreamPlayer>("SFX/GUI_Positive"));
 		_sounds.Add(SoundEffectEnum.GUI_Negative, GetNode<AudioStreamPlayer>("SFX/GUI_Negative"));
+ 
 	}
 	
 	public static void PlayTrack(MusicTrackEnum musicTrack)
 	{
+		if (!_musicOn) return;
+		
 		if (_music.ContainsKey(musicTrack))
 		{
 			_musicPlayer.Stop();
 			_musicPlayer.Stream = _music[musicTrack];
-			_musicPlayer.Play();
+			
+			if (_musicOn) _musicPlayer.Play();
 		}
 		else
 		{
@@ -49,6 +56,8 @@ public class AudioManager : Node
 
 	public static void PlaySFX(SoundEffectEnum soundEffect)
 	{
+		if (!_soundOn) return;
+		
 		if (_sounds.ContainsKey(soundEffect))
 		{
 			_sounds[soundEffect].Play();
@@ -57,7 +66,24 @@ public class AudioManager : Node
 		{
 			GD.PrintErr($"AudioManager is missing sound effect ({soundEffect})");
 		}
-		
+	}
+
+	public static void SetSfxActive(bool active)
+	{
+		_soundOn = active;
+	}
+
+	public static void SetMusicActive(bool active)
+	{
+		_musicOn = active;
+		if (active)
+		{
+			_musicPlayer.Play();
+		}
+		else
+		{
+			_musicPlayer.Stop();
+		}
 	}
 
 }

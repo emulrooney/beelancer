@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://GUI/AudioControls/music-on.png" type="Texture" id=1]
+[ext_resource path="res://GUI/AudioControls/sound-on.png" type="Texture" id=2]
+[ext_resource path="res://GUI/AudioControls/AudioControls.cs" type="Script" id=3]
+
+[node name="AudioControls" type="HBoxContainer"]
+anchor_left = 0.867
+anchor_top = 0.885
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.320068
+margin_top = 0.0999756
+margin_right = -4.0
+margin_bottom = -8.0
+alignment = 2
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SFX" type="Button" parent="."]
+margin_left = 6.0
+margin_right = 63.0
+margin_bottom = 54.0
+toggle_mode = true
+pressed = true
+icon = ExtResource( 2 )
+
+[node name="Music" type="Button" parent="."]
+margin_left = 67.0
+margin_right = 124.0
+margin_bottom = 54.0
+toggle_mode = true
+pressed = true
+icon = ExtResource( 1 )
+
+[connection signal="toggled" from="SFX" to="." method="OnSFXButtonToggled"]
+[connection signal="toggled" from="Music" to="." method="OnMusicButtonToggled"]

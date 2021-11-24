@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Beelancer/Assets/beeBody.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/CarpenterBee/CarpenterBee.cs" type="Script" id=2]
@@ -214,15 +214,13 @@ shader_param/line_thickness = 1.0
 offsets = PoolRealArray( 0.628099, 1 )
 colors = PoolColorArray( 0.968627, 1, 0, 1, 1, 1, 1, 0 )
 
-[sub_resource type="RayShape2D" id=9]
-length = 155.0
-
 [node name="CarpenterBee" type="RigidBody2D"]
 position = Vector2( -2, 0 )
 collision_layer = 512
 collision_mask = 596
+mode = 2
 gravity_scale = 0.0
-contacts_reported = 4
+contacts_reported = 6
 contact_monitor = true
 angular_damp = 0.0
 script = ExtResource( 2 )
@@ -286,30 +284,7 @@ scale_amount = 0.2
 scale_amount_random = 0.1
 color_ramp = SubResource( 8 )
 
-[node name="DetectPlayerRay" type="Area2D" parent="."]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="DetectPlayerRay"]
-rotation = -1.5708
-shape = SubResource( 9 )
-
-[node name="DetectPlayerRay2" type="Area2D" parent="."]
-rotation = -0.436332
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="DetectPlayerRay2"]
-rotation = -1.5708
-shape = SubResource( 9 )
-
-[node name="DetectPlayerRay3" type="Area2D" parent="."]
-rotation = 0.436332
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="DetectPlayerRay3"]
-rotation = -1.5708
-shape = SubResource( 9 )
+[node name="DisappearTimer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="." to="." method="OnCarpenterBodyCollision"]
-[connection signal="body_entered" from="DetectPlayerRay" to="." method="OnDetectPlayerAreaBodyEntered"]
-[connection signal="body_exited" from="DetectPlayerRay" to="." method="OnDetectPlayerAreaBodyExited"]
-[connection signal="body_entered" from="DetectPlayerRay2" to="." method="OnDetectPlayerAreaBodyEntered"]
-[connection signal="body_exited" from="DetectPlayerRay2" to="." method="OnDetectPlayerAreaBodyExited"]
-[connection signal="body_entered" from="DetectPlayerRay3" to="." method="OnDetectPlayerAreaBodyEntered"]
-[connection signal="body_exited" from="DetectPlayerRay3" to="." method="OnDetectPlayerAreaBodyExited"]
+[connection signal="timeout" from="DisappearTimer" to="." method="OnDisappearTimerTimeout"]
