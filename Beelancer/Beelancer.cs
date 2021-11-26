@@ -30,17 +30,14 @@ public class Beelancer : RigidBody2D
 
 	//Visuals
 	private AnimationPlayer _animator;
-
 	private BeeState _currentState;
+	private CPUParticles2D _impact;
+	
 	private Dictionary<PlayerStateEnum, BeeState> _states;
-
 	private List<PollenDeposit> _activeDeposits = new List<PollenDeposit>();
 	private Dictionary<ResourceTypeEnum, float> _collected;
-	
 	private float _pollenWeight = 0f;
-
 	private Flower _landableFlower;
-	
 	private Timer _collectionTimer;
 	
 	public bool InCover { get; set; }
@@ -55,7 +52,7 @@ public class Beelancer : RigidBody2D
 		}
 		Current = this;
 		_animator = GetNode<AnimationPlayer>("AnimationPlayer");
-		// _beeSprite = GetNode<Node2D>("BeeSprite");
+		_impact = GetNode<CPUParticles2D>("BeeSprite/ImpactParticles");
 
 		_collectionTimer = GetNode<Timer>("PollenCollector/Timer");
 		_collectionTimer.Start();
@@ -188,35 +185,6 @@ public class Beelancer : RigidBody2D
 		_animator.CurrentAnimation = _currentState.AnimationName;
 	}
 	
-	//Signalled
-	private void OnPollenCollectorTimerTimeout()
-	{	
-		if (!_currentState.CanGatherPollen) return;
-		
-		bool signalCollectionUpdate = false;
-		
-		//Probably inefficient but fine for now 
-		foreach (var activeDeposit in _activeDeposits)
-		{
-			if (IsInstanceValid(activeDeposit))
-			{
-				activeDeposit.Harvest();
-				_collected[activeDeposit.ResourceType] += activeDeposit.CollectionRate + GetBonus(UpgradeTypeEnum.Gather);
-				signalCollectionUpdate = true;
-				
-			}
-			else
-			{
-				_activeDeposits.Remove(activeDeposit);
-			}
-		}
-
-		if (signalCollectionUpdate)
-		{
-			ResourceCounters.UpdatePlayerCollection(_collected, GetPollenWeight(), GetFreeCarryLimit());
-		}
-	}
-
 	private void SetupStates()
 	{
 		_states = new Dictionary<PlayerStateEnum, BeeState>();
@@ -291,6 +259,11 @@ public class Beelancer : RigidBody2D
 		
 	}
 
+	public void ShowImpact()
+	{
+		_impact.Emitting = true;
+	}
+
 	/* SIGNALLED */
 
 	//Signalled
@@ -340,5 +313,36 @@ public class Beelancer : RigidBody2D
 			_landableFlower = null;
 		}
 	}
+	
+	//Signalled
+	private void OnPollenCollectorTimerTimeout()
+	{	
+		if (!_currentState.CanGatherPollen) return;
+		
+		bool updateCollection = false;
+		
+		//Probably inefficient but fine for now 
+		foreach (var activeDeposit in _activeDeposits)
+		{
+			if (IsInstanceValid(activeDeposit))
+			{
+				activeDeposit.Harvest();
+				_collected[activeDeposit.ResourceType] += activeDeposit.CollectionRate + GetBonus(UpgradeTypeEnum.Gather);
+				updateCollection = true;
+				
+			}
+			else
+			{
+				_activeDeposits.Remove(activeDeposit);
+			}
+		}
+
+		if (updateCollection)
+		{
+			ResourceCounters.UpdatePlayerCollection(_collected, GetPollenWeight(), GetFreeCarryLimit());
+			AudioManager.PlaySFX(SoundEffectEnum.Explore_PollenPickup);
+		}
+	}
+
 }
 

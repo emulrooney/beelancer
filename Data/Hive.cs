@@ -88,7 +88,7 @@ public class Hive
 			}
 		}
 
-		if (Game.Random.Next(0, 1) == 1)
+		if (Game.Random.Next(0, 2) == 1) //non-inclusive random
 		{
 			(buy, sell) = (sell, buy);
 		}

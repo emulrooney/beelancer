@@ -31,10 +31,19 @@ public class AudioManager : Node
 		//start menu music since we're there when _ready is called anyway
 		PlayTrack(MusicTrackEnum.Menu);
 		
-		_sounds = new Dictionary<SoundEffectEnum, AudioStreamPlayer>();
-		_sounds.Add(SoundEffectEnum.GUI_Positive, GetNode<AudioStreamPlayer>("SFX/GUI_Positive"));
-		_sounds.Add(SoundEffectEnum.GUI_Negative, GetNode<AudioStreamPlayer>("SFX/GUI_Negative"));
- 
+		_sounds = new Dictionary<SoundEffectEnum, AudioStreamPlayer>
+		{
+			{SoundEffectEnum.GUI_Positive, GetNode<AudioStreamPlayer>("SFX/GUI_Positive")},
+			{SoundEffectEnum.GUI_Negative, GetNode<AudioStreamPlayer>("SFX/GUI_Negative")},
+			{SoundEffectEnum.GUI_UpgradePurchase, GetNode<AudioStreamPlayer>("SFX/GUI_Upgrade")},
+			{SoundEffectEnum.GUI_Buy, GetNode<AudioStreamPlayer>("SFX/GUI_Buy")},
+			{SoundEffectEnum.GUI_Sell, GetNode<AudioStreamPlayer>("SFX/GUI_Sell")},
+			{SoundEffectEnum.Explore_PollenPickup, GetNode<AudioStreamPlayer>("SFX/GUI_Negative")},
+			{SoundEffectEnum.Explore_BirdCaw, GetNode<AudioStreamPlayer>("SFX/GUI_Negative")},
+			{SoundEffectEnum.Explore_SpiderDanger, GetNode<AudioStreamPlayer>("SFX/GUI_Negative")},
+			{SoundEffectEnum.Explore_Squish, GetNode<AudioStreamPlayer>("SFX/GUI_Negative")},
+			{SoundEffectEnum.Explore_Death, GetNode<AudioStreamPlayer>("SFX/GUI_Negative")},
+		};
 	}
 	
 	public static void PlayTrack(MusicTrackEnum musicTrack)

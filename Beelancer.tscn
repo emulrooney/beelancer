@@ -270,8 +270,6 @@ collision_mask = 596
 gravity_scale = 0.0
 angular_damp = 0.0
 script = ExtResource( 2 )
-AccelerationForce = 2.0
-MaxVelocity = 10.0
 RotationSpeed = 20.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -318,6 +316,7 @@ texture = ExtResource( 3 )
 
 [node name="LeftWing" type="Sprite" parent="BeeSprite"]
 position = Vector2( -4, 0 )
+rotation = 0.349066
 scale = Vector2( 0.9, 1 )
 z_index = 20
 texture = ExtResource( 5 )

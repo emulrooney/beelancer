@@ -219,6 +219,7 @@ position = Vector2( -2, 0 )
 collision_layer = 512
 collision_mask = 596
 mode = 2
+mass = 0.714286
 gravity_scale = 0.0
 contacts_reported = 6
 contact_monitor = true
@@ -230,6 +231,7 @@ rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 0.55
 anims/flying = SubResource( 2 )
 anims/idle = SubResource( 3 )
 anims/takeoff = SubResource( 4 )
@@ -253,7 +255,7 @@ texture = ExtResource( 3 )
 [node name="LeftWing" type="Sprite" parent="BeeSprite"]
 self_modulate = Color( 0.486275, 0.486275, 0.486275, 1 )
 position = Vector2( -4, 0 )
-rotation = 0.349066
+rotation = -0.410439
 scale = Vector2( 1, 1.1 )
 z_index = 20
 texture = ExtResource( 5 )
@@ -261,6 +263,7 @@ texture = ExtResource( 5 )
 [node name="RightWing" type="Sprite" parent="BeeSprite"]
 self_modulate = Color( 0.486275, 0.486275, 0.486275, 1 )
 position = Vector2( 2, 0 )
+rotation = 0.506337
 scale = Vector2( 1, 1.1 )
 z_index = 20
 texture = ExtResource( 4 )

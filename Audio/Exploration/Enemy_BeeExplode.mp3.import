@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Enemy_BeeExplode.mp3-d6610db3a9171e0625b918b82192fa72.mp3str"
+
+[deps]
+
+source_file="res://Audio/Exploration/Enemy_BeeExplode.mp3"
+dest_files=[ "res://.import/Enemy_BeeExplode.mp3-d6610db3a9171e0625b918b82192fa72.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

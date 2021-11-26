@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Enemy_Danger2.mp3-11620d9bb236049bbc4d82dfb2d7f14f.mp3str"
+
+[deps]
+
+source_file="res://Audio/Exploration/Enemy_Danger2.mp3"
+dest_files=[ "res://.import/Enemy_Danger2.mp3-11620d9bb236049bbc4d82dfb2d7f14f.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

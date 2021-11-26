@@ -82,7 +82,7 @@ public class Yard : Node2D
 			}
 		}
 
-		var hiveSpawn = Game.Random.Next(1, SpawnPoints.Count - 1);
+		var hiveSpawn = Game.Random.Next(1, SpawnPoints.Count);
 		var playerSpawn = hiveSpawn + 1;
 
 		var newHive = _levelExit.Instance<HiveExit>();
@@ -97,11 +97,11 @@ public class Yard : Node2D
 		if (!IsInstanceValid(Beelancer.Current)) return;
 		Vector2 origin = Vector2.Zero;
 
-		var direction = Game.Random.Next(0, 3);
+		var direction = Game.Random.Next(0, 4); //non inclusive
 		if (direction <= 1)
 		{
 			var xOffset = GetViewport().Size.x / 2;
-			var yOffset = Game.Random.Next(-100, 100);
+			var yOffset = Game.Random.Next(-200, 200);
 			if (direction == 0) 
 				origin = Beelancer.Current.GlobalPosition + new Vector2(-(xOffset + _offscreenSpawnPoint), yOffset);
 			else
@@ -109,7 +109,7 @@ public class Yard : Node2D
 		}
 		else
 		{
-			var xOffset = Game.Random.Next(-100, 100);
+			var xOffset = Game.Random.Next(-200, 200);
 			var yOffset = GetViewport().Size.y / 2;
 			
 			if (direction == 2)

@@ -7,7 +7,6 @@
 anchor_bottom = 1.0
 margin_right = 8.0
 rect_min_size = Vector2( 8, 0 )
-value = 33.0
 rounded = true
 allow_greater = true
 allow_lesser = true

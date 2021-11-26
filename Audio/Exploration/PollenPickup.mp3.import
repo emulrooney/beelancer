@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/PollenPickup.mp3-d6036836c2aaef14410c092753774fc6.mp3str"
+
+[deps]
+
+source_file="res://Audio/Exploration/PollenPickup.mp3"
+dest_files=[ "res://.import/PollenPickup.mp3-d6036836c2aaef14410c092753774fc6.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

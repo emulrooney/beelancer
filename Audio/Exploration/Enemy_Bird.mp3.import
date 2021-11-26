@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Enemy_Bird.mp3-03d73efa101be28393c4f940d60b4cc5.mp3str"
+
+[deps]
+
+source_file="res://Audio/Exploration/Enemy_Bird.mp3"
+dest_files=[ "res://.import/Enemy_Bird.mp3-03d73efa101be28393c4f940d60b4cc5.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

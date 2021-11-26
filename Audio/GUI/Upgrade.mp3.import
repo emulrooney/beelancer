@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Upgrade.mp3-98824f48d3f1d424fbcca65b6b618b36.mp3str"
+
+[deps]
+
+source_file="res://Audio/GUI/Upgrade.mp3"
+dest_files=[ "res://.import/Upgrade.mp3-98824f48d3f1d424fbcca65b6b618b36.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

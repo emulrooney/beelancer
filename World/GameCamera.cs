@@ -3,7 +3,7 @@ using System;
 
 public class GameCamera : Camera2D
 {
-	[Export] private Vector2 MaxCameraZoomout = Vector2.One * 2;
+	[Export] private Vector2 MaxCameraZoomout = Vector2.One * 1.5f;
 	private Vector2 initialCameraZoom = Vector2.One;
 	[Export] private float lerp = 0f;
 	
@@ -25,6 +25,7 @@ public class GameCamera : Camera2D
 	public override void _Ready()
 	{
 		initialCameraZoom = Zoom;
+		MaxCameraZoomout *= initialCameraZoom;
 		
 		if (IsInstanceValid(Current))
 		{
@@ -40,6 +41,8 @@ public class GameCamera : Camera2D
 
 	public override void _Process(float delta)
 	{
+		GD.Print(Beelancer.Current.LinearVelocity);
+		
 		if (_animator.PlaybackActive && IsInstanceValid(Beelancer.Current))
 		{
 			if (IsLanded)
@@ -75,5 +78,10 @@ public class GameCamera : Camera2D
 			Current._birdAnimator.CurrentAnimation = "LeftToRight";
 			Current._birdLeftToRight = true;
 		}
+	}
+
+	public static void BirdKillsPlayer()
+	{
+		
 	}
 }

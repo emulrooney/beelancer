@@ -104,6 +104,11 @@ tracks/0/keys = {
 script = ExtResource( 8 )
 _carpenterBee = ExtResource( 9 )
 _levelExit = ExtResource( 15 )
+CarpenterSpawnRate = 3.0
+CarpenterFlySpeed = 0.2
+BirdDangerTime = 20.0
+BirdCalmdownTime = 5.0
+_offscreenSpawnPoint = 200.0
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -10

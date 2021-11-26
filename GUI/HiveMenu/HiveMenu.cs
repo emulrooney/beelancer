@@ -121,6 +121,8 @@ public class HiveMenu : CenterContainer
 
 		Beelancer.Current.ModifyResourceQuantity(ResourceTypeEnum.Honey, -cost * quantity);
 		Beelancer.Current.ModifyResourceQuantity(CurrentHive.Buying.Key, 1 * quantity);
+
+		AudioManager.PlaySFX(SoundEffectEnum.GUI_Sell);
 	}
 
 	//Signalled
@@ -131,6 +133,8 @@ public class HiveMenu : CenterContainer
 
 		Beelancer.Current.ModifyResourceQuantity(ResourceTypeEnum.Honey, cost * quantity);
 		Beelancer.Current.ModifyResourceQuantity(CurrentHive.Selling.Key, -1 * quantity);
+		
+		AudioManager.PlaySFX(SoundEffectEnum.GUI_Sell);
 	}
 	
 	private void OnUpgradePressed(int upgrade)
@@ -148,11 +152,13 @@ public class HiveMenu : CenterContainer
 			UpdateUpgrades();
 		}
 		
+		AudioManager.PlaySFX(SoundEffectEnum.GUI_UpgradePurchase);
 	}
 	
 	private void OnLeaveHivePressed()
 	{
 		HideMenu();
+		AudioManager.PlaySFX(SoundEffectEnum.GUI_Negative);
 	}
 }
 

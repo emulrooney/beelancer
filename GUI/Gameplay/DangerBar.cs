@@ -83,9 +83,13 @@ public class DangerBar : TextureProgress
 				_birdAppearances[i] = true;
 
 				GameCamera.BirdTime();
-				
-				//Bird time!
 			}
+		}
+
+		if (_currentValue >= 100)
+		{
+			//Player dead.
+			GameCamera.BirdKillsPlayer();
 		}
 	}
 

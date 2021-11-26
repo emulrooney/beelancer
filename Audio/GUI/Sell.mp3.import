@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Sell.mp3-8436cc6fedf565af29d9aa823a96ca6b.mp3str"
+
+[deps]
+
+source_file="res://Audio/GUI/Sell.mp3"
+dest_files=[ "res://.import/Sell.mp3-8436cc6fedf565af29d9aa823a96ca6b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,10 +1,18 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Audio/GUI/ClickPositive.ogg" type="AudioStream" id=1]
 [ext_resource path="res://Audio/GUI/ClickNegative.ogg" type="AudioStream" id=2]
 [ext_resource path="res://Audio/AudioManager.cs" type="Script" id=3]
 [ext_resource path="res://Audio/Music/Exploration Theme_01.mp3" type="AudioStream" id=4]
 [ext_resource path="res://Audio/Music/Main Screen Theme_02.mp3" type="AudioStream" id=5]
+[ext_resource path="res://Audio/GUI/Upgrade.mp3" type="AudioStream" id=6]
+[ext_resource path="res://Audio/GUI/Buy.mp3" type="AudioStream" id=7]
+[ext_resource path="res://Audio/GUI/Sell.mp3" type="AudioStream" id=8]
+[ext_resource path="res://Audio/Exploration/Enemy_Bird.mp3" type="AudioStream" id=9]
+[ext_resource path="res://Audio/Exploration/Enemy_Danger1.mp3" type="AudioStream" id=10]
+[ext_resource path="res://Audio/Exploration/Enemy_BeeExplode.mp3" type="AudioStream" id=11]
+[ext_resource path="res://Audio/Exploration/Player_Death.mp3" type="AudioStream" id=12]
+[ext_resource path="res://Audio/Exploration/PollenPickup.mp3" type="AudioStream" id=13]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource( 3 )
@@ -18,5 +26,29 @@ stream = ExtResource( 2 )
 
 [node name="GUI_Positive" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 1 )
+
+[node name="GUI_Upgrade" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 6 )
+
+[node name="GUI_Buy" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 7 )
+
+[node name="GUI_Sell" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 8 )
+
+[node name="Explore_Bird" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 9 )
+
+[node name="Explore_Danger" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 10 )
+
+[node name="Explore_Squish" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 11 )
+
+[node name="Explore_GameOver" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 12 )
+
+[node name="Explore_Pollen" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 13 )
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
