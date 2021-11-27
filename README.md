@@ -2,11 +2,14 @@
 
 Entry for [Github Game Off 2021](https://itch.io/jam/game-off-2021).
 
+![Beelancer Gameplay Screenshot](https://emulrooney.github.io/assets/images/project-Beelancer.png)
+
+**Playable link coming soon.**
 
 ## Objectives
-* Collect, buy and sell pollen at different hives
-* Upgrade your bee for efficiency and profit
-* Try not to get eaten by birds or other awful things
+* Collect, buy and sell pollen at different hives.
+* Upgrade your bee for efficiency and greater profit!
+* Try not to get eaten by birds or get tackled by carpenter bees.
 
 
 ## Game Controls
