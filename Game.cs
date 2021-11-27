@@ -56,25 +56,29 @@ public class Game : Node
 	{
 		SetLandedFlower(null);
 		GUIManager.SetGameState(GameStateEnum.Gameplay);
-
-		if (IsInstanceValid(CurrentYard))
-		{
-			CurrentYard.QueueFree();
-		}
 		
 		_mainMenu.Visible = false;
-		
-		CurrentYard = _instance.Yard.Instance<Yard>();
-		_instance.AddChild(CurrentYard);
-	
-		
 		CurrentLevels = new Dictionary<UpgradeTypeEnum, int>();
 		foreach (UpgradeTypeEnum upgrade in Enum.GetValues(typeof(UpgradeTypeEnum)))
 		{
 			CurrentLevels.Add(upgrade, 1);
 		}
+
+		NewYard();
 		
 		AudioManager.PlayTrack(MusicTrackEnum.Exploration);
+	}
+
+	public static void NewYard()
+	{
+		if (IsInstanceValid(CurrentYard))
+		{	
+			CurrentYard.QueueFree();
+		}
+		
+		CurrentYard = _instance.Yard.Instance<Yard>();
+		_instance.AddChild(CurrentYard);
+		
 	}
 
 	public static void ShowMainMenu()

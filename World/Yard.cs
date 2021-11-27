@@ -82,7 +82,7 @@ public class Yard : Node2D
 			}
 		}
 
-		var hiveSpawn = Game.Random.Next(1, SpawnPoints.Count);
+		var hiveSpawn = Game.Random.Next(1, SpawnPoints.Count - 1);
 		var playerSpawn = hiveSpawn + 1;
 
 		var newHive = _levelExit.Instance<HiveExit>();

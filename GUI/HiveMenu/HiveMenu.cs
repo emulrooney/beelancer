@@ -6,9 +6,9 @@ public class HiveMenu : CenterContainer
 {
 	private static HiveMenu _instance;
 	
-	[Export] private float _buttonClickTradeQuantity = .5f;
+	[Export] private float _buttonClickTradeQuantity = 1f;
 
-	[Export] private int[] _upgradeCosts = { 0, 3, 6, 9, 12, 15, 0 };
+	[Export] private int[] _upgradeCosts = { 0, 25, 30, 35, 40, 45, 50 };
 	
 	public Hive CurrentHive { get; private set; }
 
@@ -58,13 +58,6 @@ public class HiveMenu : CenterContainer
 		_instance._ShowMenu();
 	}
 
-	/**
-	 * Facade
-	 */
-	public static void HideMenu()
-	{
-		_instance._HideMenu();
-	}
 	
 	private void _ShowMenu()
 	{
@@ -79,11 +72,6 @@ public class HiveMenu : CenterContainer
 		UpdateUpgrades();
 		
 		Visible = true;
-	}
-
-	private void _HideMenu()
-	{
-		Visible = false;
 	}
 
 	private Color SetSpriteColor(ResourceTypeEnum resource)
@@ -157,7 +145,8 @@ public class HiveMenu : CenterContainer
 	
 	private void OnLeaveHivePressed()
 	{
-		HideMenu();
+		Game.NewYard();
+		GUIManager.SetGameState(GameStateEnum.Gameplay);
 		AudioManager.PlaySFX(SoundEffectEnum.GUI_Negative);
 	}
 }
