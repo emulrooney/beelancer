@@ -82,6 +82,7 @@ public class DangerBar : TextureProgress
 			{
 				_birdAppearances[i] = true;
 
+				AudioManager.PlaySFX(SoundEffectEnum.Explore_BirdCaw);
 				GameCamera.BirdTime();
 			}
 		}

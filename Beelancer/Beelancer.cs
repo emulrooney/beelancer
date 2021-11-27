@@ -256,7 +256,11 @@ public class Beelancer : RigidBody2D
 		}
 		
 		return 0f;
-		
+	}
+
+	public void Death()
+	{
+		_animator.CurrentAnimation = "death";
 	}
 
 	public void ShowImpact()

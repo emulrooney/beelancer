@@ -3,13 +3,21 @@ using System;
 
 public class MainMenu : Control
 {
+	private static MainMenu _instance;
+	
 	private PopupDialog _credits;
 	private PopupPanel _options;
 
 	public override void _Ready()
 	{
+		_instance = this;
 		_credits = GetNode<PopupDialog>("CenterContainer/CreditsDialog");
 		_options = GetNode<PopupPanel>("CenterContainer/OptionsMenu");
+	}
+
+	public static void SetVisible(bool visible)
+	{
+		_instance.Visible = visible;
 	}
 
 	private void OnCreditsDismissPressed()

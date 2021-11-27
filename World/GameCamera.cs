@@ -82,6 +82,12 @@ public class GameCamera : Camera2D
 
 	public static void BirdKillsPlayer()
 	{
-		
+		Current._birdAnimator.CurrentAnimation = "KillPlayer";
+	}
+
+	public static void KillPlayer()
+	{
+		Beelancer.Current.Death();
+		GUIManager.SetGameState(GameStateEnum.GameOver);
 	}
 }

@@ -15,12 +15,15 @@ public class GUIManager : CanvasLayer
 		switch (stateEnum)
 		{
 			case GameStateEnum.MainMenu:
+				animationPlayer.CurrentAnimation = "MainMenu";
+				MainMenu.SetVisible(true);
+				break;
 			case GameStateEnum.HiveMenu:
 				animationPlayer.CurrentAnimation = "HiveMenu";
 				HiveMenu.ShowMenu();
 				break;
 			case GameStateEnum.GameOver:
-				animationPlayer.CurrentAnimation = "MainMenu";
+				animationPlayer.CurrentAnimation = "GameOver";
 				break;
 			case GameStateEnum.Gameplay:
 				animationPlayer.CurrentAnimation = "Gameplay";
