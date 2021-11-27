@@ -82,14 +82,21 @@ public class Yard : Node2D
 			}
 		}
 
-		var hiveSpawn = Game.Random.Next(1, SpawnPoints.Count - 1);
-		var playerSpawn = hiveSpawn + 1;
-
-		var newHive = _levelExit.Instance<HiveExit>();
-		AddChild(newHive);
-		newHive.Position = SpawnPoints[hiveSpawn].Position;
-
+		var playerSpawn = Game.Random.Next(1, SpawnPoints.Count - 1);
 		Beelancer.Current.Position = SpawnPoints[playerSpawn].Position;
+
+		for (int i = 0; i < SpawnPoints.Count; i++)
+		{
+			if (i != playerSpawn)
+			{
+				var newHive = _levelExit.Instance<HiveExit>();
+				newHive.RotationDegrees = Game.Random.Next(0, 360);
+				AddChild(newHive);
+				newHive.Position = SpawnPoints[i].Position;
+			}
+		}
+
+		
 	}
 
 	private void OnCarpenterBeeSpawnTimeout()

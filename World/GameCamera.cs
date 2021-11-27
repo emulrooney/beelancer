@@ -44,7 +44,7 @@ public class GameCamera : Camera2D
 		GD.Print(Beelancer.Current.LinearVelocity);
 		
 		if (_animator.PlaybackActive && IsInstanceValid(Beelancer.Current))
-		{
+		{	
 			if (IsLanded)
 			{
 				GlobalPosition = Beelancer.Current.GlobalPosition.LinearInterpolate(LastLandingFocusLocation, lerp);
