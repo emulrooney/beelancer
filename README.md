@@ -1,8 +1,9 @@
 # Beelancer
+## Entry for [Github Game Off 2021](https://itch.io/jam/game-off-2021).
 
-Entry for [Github Game Off 2021](https://itch.io/jam/game-off-2021).
+[![Beelancer Gameplay Screenshot](https://emulrooney.github.io/assets/images/project-Beelancer.png)](https://emulrooney.itch.io/beelancer)
+## [Play Beelancer on Itch.io.](https://emulrooney.itch.io/beelancer)
 
-![Beelancer Gameplay Screenshot](https://emulrooney.github.io/assets/images/project-Beelancer.png)
 
 ## About this game
 *Even bees are part of the gig economy. Navigate flowerbeds, collect pollen and sell it at different hives to buy upgrades and become a very wealthy bee. Hide under leaves to avoid getting eaten by birds and try not to get bullied by useless carpenter bees. The more pollen you carry, the worse you'll fly - so bee smart.*
@@ -47,3 +48,10 @@ Spacebar - Land/takeoff
 
 As of November 28th, I'm out of time to work on this game jam, so this project is complete for the time being.
 This project is complete, so these issues will likely persist.  
+
+#### Credits
+
+Programming, Art - [Evan Mulrooney](https://emulrooney.github.io)
+
+Audio - Erica Charles
+
