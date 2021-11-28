@@ -15,6 +15,8 @@ public class Game : Node
 	public static Random Random = new Random();
 	public static Yard CurrentYard { get; private set; }
 	public static Dictionary<UpgradeTypeEnum, int> CurrentLevels;
+	public static Dictionary<ResourceTypeEnum, float> CollectedResources;
+
 	
 	private static MainMenu _mainMenu;
 	private GameStateEnum _stateEnum = GameStateEnum.MainMenu;
@@ -65,6 +67,7 @@ public class Game : Node
 		}
 
 		NewYard();
+		InitializeResources();
 		
 		AudioManager.PlayTrack(MusicTrackEnum.Exploration);
 	}
@@ -79,6 +82,17 @@ public class Game : Node
 		CurrentYard = _instance.Yard.Instance<Yard>();
 		_instance.AddChild(CurrentYard);
 		
+	}
+	
+	public static void InitializeResources()
+	{
+		CollectedResources = new Dictionary<ResourceTypeEnum, float>
+		{
+			{ResourceTypeEnum.RedPollen, 0f},
+			{ResourceTypeEnum.BluePollen, 0f},
+			{ResourceTypeEnum.GreenPollen, 0f},
+			{ResourceTypeEnum.Honey, 0f}
+		};
 	}
 
 	public static void ShowMainMenu()

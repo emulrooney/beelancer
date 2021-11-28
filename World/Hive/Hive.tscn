@@ -32,3 +32,5 @@ collision_mask = 512
 position = Vector2( 64.2172, -7.13525 )
 rotation = 0.785398
 shape = SubResource( 2 )
+
+[connection signal="body_entered" from="EnterHive" to="." method="OnEnterHiveBodyEntered"]

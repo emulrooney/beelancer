@@ -72,6 +72,7 @@ public class HiveMenu : CenterContainer
 		UpdateUpgrades();
 		
 		Visible = true;
+		GetTree().Paused = true;
 	}
 
 	private Color SetSpriteColor(ResourceTypeEnum resource)
@@ -148,6 +149,7 @@ public class HiveMenu : CenterContainer
 		Game.NewYard();
 		GUIManager.SetGameState(GameStateEnum.Gameplay);
 		AudioManager.PlaySFX(SoundEffectEnum.GUI_Negative);
+		GetTree().Paused = false;
 	}
 }
 

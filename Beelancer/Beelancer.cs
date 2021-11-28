@@ -37,7 +37,6 @@ public class Beelancer : RigidBody2D
 	
 	private Dictionary<PlayerStateEnum, BeeState> _states;
 	private List<PollenDeposit> _activeDeposits = new List<PollenDeposit>();
-	private Dictionary<ResourceTypeEnum, float> _collected;
 	private float _pollenWeight = 0f;
 	private Flower _landableFlower;
 	private Timer _collectionTimer;
@@ -58,14 +57,6 @@ public class Beelancer : RigidBody2D
 
 		_collectionTimer = GetNode<Timer>("PollenCollector/Timer");
 		_collectionTimer.Start();
-
-		_collected = new Dictionary<ResourceTypeEnum, float>
-		{
-			{ResourceTypeEnum.RedPollen, 0f},
-			{ResourceTypeEnum.BluePollen, 0f},
-			{ResourceTypeEnum.GreenPollen, 0f},
-			{ResourceTypeEnum.Honey, 0f}
-		};
 		
 		SetupStates();
 		SetState(PlayerStateEnum.Flying);
@@ -87,10 +78,6 @@ public class Beelancer : RigidBody2D
 		x += Input.IsActionPressed("ui_right") ? 1 : 0;
 		y += Input.IsActionPressed("ui_up") ? 1 : 0;
 		y -= Input.IsActionPressed("ui_down") ? 1 : 0;
-		
-		if (Input.IsKeyPressed((int)KeyList.P)) {
-			GUIManager.SetGameState(GameStateEnum.HiveMenu);
-		}
 
 		if (Input.IsActionJustPressed("land"))
 		{
@@ -200,20 +187,20 @@ public class Beelancer : RigidBody2D
 
 	public float GetResourceQuantity(ResourceTypeEnum resource)
 	{
-		return _collected[resource];
+		return Game.CollectedResources[resource];
 	}
 
 	public void ModifyResourceQuantity(ResourceTypeEnum resource, float value)
 	{
-		_collected[resource] += value;
-		ResourceCounters.UpdatePlayerCollection(_collected, GetPollenWeight(), GetFreeCarryLimit());
+		Game.CollectedResources[resource] += value;
+		ResourceCounters.UpdatePlayerCollection(Game.CollectedResources, GetPollenWeight(), GetFreeCarryLimit());
 	}
 
 	public float GetPollenWeight()
 	{
-		var pollen = _collected[ResourceTypeEnum.RedPollen]
-					 + _collected[ResourceTypeEnum.BluePollen]
-					 + _collected[ResourceTypeEnum.GreenPollen];
+		var pollen = Game.CollectedResources[ResourceTypeEnum.RedPollen]
+					 + Game.CollectedResources[ResourceTypeEnum.BluePollen]
+					 + Game.CollectedResources[ResourceTypeEnum.GreenPollen];
 		return pollen;
 	}
 
@@ -333,7 +320,7 @@ public class Beelancer : RigidBody2D
 			if (IsInstanceValid(activeDeposit))
 			{
 				activeDeposit.Harvest();
-				_collected[activeDeposit.ResourceType] += activeDeposit.CollectionRate + GetBonus(UpgradeTypeEnum.Gather);
+				Game.CollectedResources[activeDeposit.ResourceType] += activeDeposit.CollectionRate + GetBonus(UpgradeTypeEnum.Gather);
 				updateCollection = true;
 				
 			}
@@ -345,7 +332,7 @@ public class Beelancer : RigidBody2D
 
 		if (updateCollection)
 		{
-			ResourceCounters.UpdatePlayerCollection(_collected, GetPollenWeight(), GetFreeCarryLimit());
+			ResourceCounters.UpdatePlayerCollection(Game.CollectedResources, GetPollenWeight(), GetFreeCarryLimit());
 			AudioManager.PlaySFX(SoundEffectEnum.Explore_PollenPickup);
 		}
 	}

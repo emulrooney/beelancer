@@ -41,8 +41,6 @@ public class GameCamera : Camera2D
 
 	public override void _Process(float delta)
 	{
-		GD.Print(Beelancer.Current.LinearVelocity);
-		
 		if (_animator.PlaybackActive && IsInstanceValid(Beelancer.Current))
 		{	
 			if (IsLanded)

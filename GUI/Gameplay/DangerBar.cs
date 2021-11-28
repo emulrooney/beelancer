@@ -42,7 +42,9 @@ public class DangerBar : TextureProgress
 			_instance._birdAppearances[i] = false;
 			_instance._birdIndicatorTimes[i] = _instance.BirdIndicatorTimePercentages[i] * (100 / _instance._timerIncrementAmount);
 		}
- 	}
+
+		_instance._currentValue = 0;
+	}
 
 	public static void SetActiveDanger(bool inDanger)
 	{
@@ -60,9 +62,9 @@ public class DangerBar : TextureProgress
 
 	public static void Setup(float dangerTime, float calmTime)
 	{
-		_instance._timerIncrementAmount = 100 / dangerTime;
-		_instance._timerDecrementAmount = 100 / calmTime;
-		_instance._minimumBirdAppearanceTime = _instance._minimumBirdAppearanceTime * dangerTime; 
+		_instance._timerIncrementAmount = dangerTime / 100;
+		_instance._timerDecrementAmount = calmTime / 100;
+		_instance._minimumBirdAppearanceTime *= dangerTime; 
 		
 		SetActiveDanger(true);
 	}

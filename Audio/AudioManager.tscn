@@ -15,6 +15,7 @@
 [ext_resource path="res://Audio/Exploration/PollenPickup.mp3" type="AudioStream" id=13]
 
 [node name="AudioManager" type="Node"]
+pause_mode = 2
 script = ExtResource( 3 )
 _menuMusic = ExtResource( 5 )
 _exploreMusic = ExtResource( 4 )

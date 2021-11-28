@@ -13,7 +13,6 @@ public class AudioManager : Node
 	//Music
 	private static AudioStreamPlayer _musicPlayer;
 	private static Dictionary<MusicTrackEnum, AudioStream> _music;
-	
 
 	private static Dictionary<SoundEffectEnum, AudioStreamPlayer> _sounds;
 
