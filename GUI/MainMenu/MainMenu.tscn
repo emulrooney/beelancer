@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://World/WorldTextures/Zig.png" type="Texture" id=1]
 [ext_resource path="res://GUI/Assets/Fonts/kenvector_future_thin.ttf" type="DynamicFontData" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://GUI/Theme/MainFont.tres" type="DynamicFont" id=4]
 [ext_resource path="res://GUI/MainMenu/MainMenu.cs" type="Script" id=5]
 [ext_resource path="res://GUI/Theme/PanelTheme.stylebox" type="StyleBox" id=6]
+[ext_resource path="res://World/Flower/Flower1Outlined.png" type="Texture" id=7]
+[ext_resource path="res://World/PollenDeposit/Diamond.png" type="Texture" id=8]
+[ext_resource path="res://Beelancer/Assets/EntireBee.png" type="Texture" id=10]
 
 [sub_resource type="ShaderMaterial" id=1]
 
@@ -143,7 +146,7 @@ margin_right = 352.0
 margin_bottom = 281.0
 rect_min_size = Vector2( 0, 16 )
 
-[node name="SettingsButton" type="Button" parent="CenterContainer/MainMenu/HBoxContainer"]
+[node name="InstructionsButton" type="Button" parent="CenterContainer/MainMenu/HBoxContainer"]
 margin_top = 285.0
 margin_right = 352.0
 margin_bottom = 321.0
@@ -200,7 +203,9 @@ Resources Used:
 * Kenney.NL (for the UI & some effects)
 * Unsplash (lots of stock art was modified -- full list on git repo!)
 
-I can't believe someone scrolled down! Thanks for reading and playing my stupid bee game. bzzzzz"
+I can't believe someone scrolled down! Thanks for reading and playing my stupid bee game. 
+
+Good luck to all the other GameOff submissions! bzz bzz"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -214,7 +219,144 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="InstructionsDialog" type="PopupDialog" parent="CenterContainer"]
+margin_left = 130.0
+margin_top = 20.0
+margin_right = 830.0
+margin_bottom = 520.0
+rect_min_size = Vector2( 700, 500 )
+theme = SubResource( 3 )
+custom_styles/panel = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InstructionsDismissButton" type="Button" parent="CenterContainer/InstructionsDialog"]
+anchor_right = 1.0
+margin_top = 470.226
+margin_bottom = 494.226
+text = "BZZZZ. BACK TO THE GAME!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/InstructionsDialog"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 314.0
+margin_bottom = 453.0
+text = "even for bees, the gig economy is brutal.
+
+
+controls:
+A/D or left/right arrow - steer
+W or up arrow - Accelerate
+Space bar - Land/takeoff
+
+
+Objectives:
+- Collect pollen
+- Trade pollen and buy upgrades at a hive
+- Avoid carpenter bees
+- Get to hive before a bird eats you
+- Hide under leaves if the danger ball fills up
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer/InstructionsDialog"]
+margin_left = 369.886
+margin_top = 183.841
+margin_right = 519.886
+margin_bottom = 243.841
+text = "you can land on flowers to collect pollen"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="CenterContainer/InstructionsDialog"]
+margin_left = 332.0
+margin_top = 330.0
+margin_right = 676.0
+margin_bottom = 516.0
+text = "Carpenter bees are very stupid and fly at you in a straight line
+
+(but if they hit you they'll steal pollen/money)"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="CenterContainer/InstructionsDialog"]
+margin_left = 530.497
+margin_top = 111.524
+margin_right = 680.497
+margin_bottom = 171.524
+text = "you can only land on colorful flowers"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="CenterContainer/InstructionsDialog"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 0.2, 0.2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/InstructionsDialog/Control"]
+self_modulate = Color( 0.341176, 1, 0.784314, 1 )
+margin_left = 1820.54
+margin_top = 88.2941
+margin_right = 2620.54
+margin_bottom = 876.294
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Diamond" type="Sprite" parent="CenterContainer/InstructionsDialog/Control/TextureRect"]
+self_modulate = Color( 0.968627, 1, 0, 1 )
+position = Vector2( 425.37, 404.891 )
+texture = ExtResource( 8 )
+
+[node name="Diamond2" type="Sprite" parent="CenterContainer/InstructionsDialog/Control/TextureRect"]
+self_modulate = Color( 0.968627, 1, 0, 1 )
+position = Vector2( 311.849, 476.367 )
+texture = ExtResource( 8 )
+
+[node name="Diamond3" type="Sprite" parent="CenterContainer/InstructionsDialog/Control/TextureRect"]
+self_modulate = Color( 0.968627, 1, 0, 1 )
+position = Vector2( 299.236, 346.028 )
+texture = ExtResource( 8 )
+
+[node name="TextureRect2" type="TextureRect" parent="CenterContainer/InstructionsDialog/Control"]
+self_modulate = Color( 0.627451, 0.627451, 0.627451, 1 )
+margin_left = 2615.29
+margin_top = 118.067
+margin_right = 3415.29
+margin_bottom = 906.067
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EntireBee" type="Sprite" parent="CenterContainer/InstructionsDialog"]
+self_modulate = Color( 1, 0.584314, 0, 1 )
+position = Vector2( 498.374, 292.043 )
+scale = Vector2( 0.531375, 0.579552 )
+texture = ExtResource( 10 )
+
 [connection signal="pressed" from="CenterContainer/MainMenu/HBoxContainer/StartGameButton" to="." method="OnStartGameButtonPressed"]
-[connection signal="pressed" from="CenterContainer/MainMenu/HBoxContainer/SettingsButton" to="." method="OnSettingsButtonPressed"]
+[connection signal="pressed" from="CenterContainer/MainMenu/HBoxContainer/InstructionsButton" to="." method="OnInstructionsButtonPressed"]
 [connection signal="pressed" from="CenterContainer/MainMenu/HBoxContainer/CreditsButton" to="." method="OnCreditsButtonPressed"]
 [connection signal="pressed" from="CenterContainer/CreditsDialog/CreditsDismissButton" to="." method="OnCreditsDismissPressed"]
+[connection signal="pressed" from="CenterContainer/InstructionsDialog/InstructionsDismissButton" to="." method="OnInstructionsDismissButtonPressed"]

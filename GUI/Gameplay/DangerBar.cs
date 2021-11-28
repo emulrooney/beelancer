@@ -29,8 +29,10 @@ public class DangerBar : TextureProgress
 
 	public static void Start()
 	{
+		var sneakBonus = Beelancer.Current.GetBonus(UpgradeTypeEnum.Sneak);
+		
 		_instance._activeTimer.WaitTime = _instance._timerIncrementAmount;
-		_instance._hiddenTimer.WaitTime = _instance._timerDecrementAmount;
+		_instance._hiddenTimer.WaitTime = _instance._timerDecrementAmount + sneakBonus;
 		
 		_instance._birdAppearances = new bool[_instance.BirdIndicatorTimePercentages.Length];
 		_instance._birdIndicatorTimes = new float[_instance.BirdIndicatorTimePercentages.Length];

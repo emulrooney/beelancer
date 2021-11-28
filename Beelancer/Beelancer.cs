@@ -10,15 +10,17 @@ public class Beelancer : RigidBody2D
 	[Export] public float WalkSpeed = 200f;
 	[Export] public float RotationSpeed = 15f;
 
-	[Export] public float PollenWeightRotationSlowdown = .1f; //Per full unit over.
-	[Export] public float PollenWeightRotationMaxSlowdown = 5f;
-	[Export] public float PollenWeightAccelerationForceSlowdown = .015f; //Per full unit over.
-	[Export] public float PollenWeightAccelerationMaxSlowdown = 1f;
+	[Export] public float PollenWeightRotationSlowdown = .3f; //Per full unit over.
+	[Export] public float PollenWeightRotationMaxSlowdown = 15f;
+	[Export] public float PollenWeightAccelerationForceSlowdown = .018f; //Per full unit over.
+	[Export] public float PollenWeightAccelerationMaxSlowdown = 1.5f;
 	
 	[Export] public float BasePollenCapacity = 45f;
 	 
 	[Export] public float AccelerationBonusPerUpgrade = 1f;
+	[Export] public float TimerDecreaseBonusPerUpgrade = 0.06f;
 	[Export] public float MaxVelocityBonusPerUpgrade = 5f;
+	[Export] public float TradeBonusPerUpgrade = 0.01f;
 	[Export] public float WalkSpeedBonusPerUpgrade = 4f;
 	[Export] public float MaxGatherBonusPerUpgrade = .01f;
 	[Export] public float FreePollenUnitsPerUpgrade = 5f;
@@ -238,13 +240,13 @@ public class Beelancer : RigidBody2D
 		switch (upgrade)
 		{
 			case UpgradeTypeEnum.Carry:
-				
-				break;
+				return level * MaxGatherBonusPerUpgrade;
 			case UpgradeTypeEnum.Accelerate:
 				return level * AccelerationBonusPerUpgrade;
 			case UpgradeTypeEnum.Sneak:
-				break;
+				return level * TimerDecreaseBonusPerUpgrade;
 			case UpgradeTypeEnum.Trade:
+				return level * TradeBonusPerUpgrade;
 				break;
 			case UpgradeTypeEnum.Speed:
 				return level * MaxVelocityBonusPerUpgrade;

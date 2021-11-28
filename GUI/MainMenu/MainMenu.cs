@@ -6,13 +6,13 @@ public class MainMenu : Control
 	private static MainMenu _instance;
 	
 	private PopupDialog _credits;
-	private PopupPanel _options;
+	private PopupDialog _instructions;
 
 	public override void _Ready()
 	{
 		_instance = this;
 		_credits = GetNode<PopupDialog>("CenterContainer/CreditsDialog");
-		_options = GetNode<PopupPanel>("CenterContainer/OptionsMenu");
+		_instructions = GetNode<PopupDialog>("CenterContainer/InstructionsDialog");
 	}
 
 	public static void SetVisible(bool visible)
@@ -32,9 +32,9 @@ public class MainMenu : Control
 		AudioManager.PlaySFX(SoundEffectEnum.GUI_Positive);
 	}
 	
-	private void OnSettingsButtonPressed()
+	private void OnInstructionsButtonPressed()
 	{
-		_options.Visible = true;
+		_instructions.Visible = true;
 		AudioManager.PlaySFX(SoundEffectEnum.GUI_Positive);
 	}
 	
@@ -48,13 +48,13 @@ public class MainMenu : Control
 	private void OnSaveOptionsPressed()
 	{
 		//Todo: Set options
-		_options.Visible = false;
+		_instructions.Visible = false;
 		AudioManager.PlaySFX(SoundEffectEnum.GUI_Positive);
 	}
-	
-	private void OnCancelOptionsPressed()
+
+	private void OnInstructionsDismissButtonPressed()
 	{
-		_options.Visible = false;
+		_instructions.Visible = false;
 		AudioManager.PlaySFX(SoundEffectEnum.GUI_Negative);
 
 	}
