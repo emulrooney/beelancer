@@ -66,6 +66,7 @@ public class GameCamera : Camera2D
 
 	public static void BirdTime()
 	{
+		AudioManager.PlaySFX(SoundEffectEnum.Explore_BirdCaw);
 		if (Current._birdLeftToRight)
 		{
 			Current._birdAnimator.CurrentAnimation = "RightToLeft";
@@ -80,6 +81,7 @@ public class GameCamera : Camera2D
 
 	public static void BirdKillsPlayer()
 	{
+		AudioManager.PlaySFX(SoundEffectEnum.Explore_Death);
 		Current._birdAnimator.CurrentAnimation = "KillPlayer";
 	}
 

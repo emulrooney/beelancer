@@ -29,6 +29,11 @@ public class CarpenterBee : RigidBody2D
 	{
 		if (body is Beelancer bee)
 		{
+			AudioManager.PlaySFX(SoundEffectEnum.Explore_CarpenterRobbery);
+
+			var stolen = Game.Random.Next(0, 4);
+			bee.ModifyResourceQuantity((ResourceTypeEnum)stolen, -0.5f);
+			
 			bee.ApplyCentralImpulse(Position.DirectionTo(bee.Position) * 30);
 			bee.ShowImpact();
 		}
@@ -41,6 +46,7 @@ public class CarpenterBee : RigidBody2D
 	//Signalled
 	private void OnDisappearTimerTimeout()
 	{
+		AudioManager.PlaySFX(SoundEffectEnum.Explore_Squish);
 		QueueFree();
 	}
 }

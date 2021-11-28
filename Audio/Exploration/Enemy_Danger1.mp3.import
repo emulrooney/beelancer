@@ -12,4 +12,4 @@ dest_files=[ "res://.import/Enemy_Danger1.mp3-d2ac07188d23586bf3fbadbd3150a8f9.m
 [params]
 
 loop=false
-loop_offset=0
+loop_offset=0.0

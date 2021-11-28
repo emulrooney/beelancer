@@ -37,11 +37,11 @@ public class AudioManager : Node
 			{SoundEffectEnum.GUI_UpgradePurchase, GetNode<AudioStreamPlayer>("SFX/GUI_Upgrade")},
 			{SoundEffectEnum.GUI_Buy, GetNode<AudioStreamPlayer>("SFX/GUI_Buy")},
 			{SoundEffectEnum.GUI_Sell, GetNode<AudioStreamPlayer>("SFX/GUI_Sell")},
-			{SoundEffectEnum.Explore_PollenPickup, GetNode<AudioStreamPlayer>("SFX/GUI_Negative")},
-			{SoundEffectEnum.Explore_BirdCaw, GetNode<AudioStreamPlayer>("SFX/GUI_Negative")},
-			{SoundEffectEnum.Explore_SpiderDanger, GetNode<AudioStreamPlayer>("SFX/GUI_Negative")},
-			{SoundEffectEnum.Explore_Squish, GetNode<AudioStreamPlayer>("SFX/GUI_Negative")},
-			{SoundEffectEnum.Explore_Death, GetNode<AudioStreamPlayer>("SFX/GUI_Negative")},
+			{SoundEffectEnum.Explore_PollenPickup, GetNode<AudioStreamPlayer>("SFX/Explore_Pollen")},
+			{SoundEffectEnum.Explore_BirdCaw, GetNode<AudioStreamPlayer>("SFX/Explore_Bird")},
+			{SoundEffectEnum.Explore_CarpenterRobbery, GetNode<AudioStreamPlayer>("SFX/Explore_Danger")},
+			{SoundEffectEnum.Explore_Squish, GetNode<AudioStreamPlayer>("SFX/Explore_Squish")},
+			{SoundEffectEnum.Explore_Death, GetNode<AudioStreamPlayer>("SFX/Explore_GameOver")},
 		};
 	}
 	

@@ -193,6 +193,8 @@ public class Beelancer : RigidBody2D
 	public void ModifyResourceQuantity(ResourceTypeEnum resource, float value)
 	{
 		Game.CollectedResources[resource] += value;
+		Game.CollectedResources[resource] = Math.Max(Game.CollectedResources[resource], 0f);
+		
 		ResourceCounters.UpdatePlayerCollection(Game.CollectedResources, GetPollenWeight(), GetFreeCarryLimit());
 	}
 

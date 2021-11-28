@@ -533,9 +533,6 @@ anims/RightToLeft = SubResource( 3 )
 anims/ToLandingZone = SubResource( 4 )
 anims/ToPlayer = SubResource( 5 )
 
-[node name="Hornet" parent="." instance=ExtResource( 9 )]
-position = Vector2( 312.096, -126.529 )
-
 [node name="Beelancer" parent="." instance=ExtResource( 2 )]
 z_index = 10
 mode = 2

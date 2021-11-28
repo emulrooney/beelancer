@@ -10,7 +10,7 @@ public enum SoundEffectEnum
     GUI_Sell,
     Explore_PollenPickup,
     Explore_BirdCaw,
-    Explore_SpiderDanger,
+    Explore_CarpenterRobbery,
     Explore_Squish,
     Explore_Death,
 }
