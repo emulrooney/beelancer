@@ -24,9 +24,11 @@ public class GUIManager : CanvasLayer
 				break;
 			case GameStateEnum.GameOver:
 				animationPlayer.CurrentAnimation = "GameOver";
+				animationPlayer.GetTree().Paused = true;
 				break;
 			case GameStateEnum.Gameplay:
 				animationPlayer.CurrentAnimation = "Gameplay";
+				animationPlayer.GetTree().Paused = false;
 				break;
 			default:
 				throw new ArgumentOutOfRangeException(nameof(stateEnum), stateEnum, null);

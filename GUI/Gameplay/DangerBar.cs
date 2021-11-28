@@ -20,6 +20,8 @@ public class DangerBar : TextureProgress
 	private float _timerIncrementAmount;
 	private float _timerDecrementAmount;
 
+	private bool finished = false;
+
 	public override void _Ready()
 	{
 		_instance = this;
@@ -91,10 +93,11 @@ public class DangerBar : TextureProgress
 			}
 		}
 
-		if (_currentValue >= 100)
+		if (_currentValue >= 100 && !finished)
 		{
 			//Player dead.
 			GameCamera.BirdKillsPlayer();
+			finished = true;
 		}
 	}
 
