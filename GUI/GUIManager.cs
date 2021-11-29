@@ -24,7 +24,7 @@ public class GUIManager : CanvasLayer
 				break;
 			case GameStateEnum.GameOver:
 				animationPlayer.CurrentAnimation = "GameOver";
-				animationPlayer.GetTree().Paused = true;
+				// animationPlayer.GetTree().Paused = true;
 				break;
 			case GameStateEnum.Gameplay:
 				animationPlayer.CurrentAnimation = "Gameplay";
